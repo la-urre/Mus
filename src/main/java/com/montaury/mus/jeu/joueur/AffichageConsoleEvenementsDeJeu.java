@@ -9,10 +9,13 @@ import java.util.stream.Collectors;
 public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu {
   private final Joueur joueurCourant;
 
+  //creation d'un objet qui affichera des information dans le terminal sur la progression du jeu
+  //prend en parametre le joueur humain de la partie
   public AffichageConsoleEvenementsDeJeu(Joueur courant) {
     this.joueurCourant = courant;
   }
 
+  //Fonction pour afficher des infos dans le terminal
   @Override
   public void nouvellePartie() {
     println("Nouvelle partie");
@@ -28,7 +31,7 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
     println("Manche terminée");
     score.resultatManches().forEach(manche -> println("Vainqueur : " + manche.vainqueur().nom() + ", score du perdant : " + manche.pointsVaincu()));
   }
-
+//affichage du role de l'ordinateur si il est Esku
   @Override
   public void nouveauTour(Opposants opposants) {
     println(opposants.joueurEsku().nom() + " est esku");

@@ -18,6 +18,8 @@ public class Opposants {
     joueurZaku = tmp;
   }
 
+
+  //Getter
   public Joueur joueurEsku() {
     return joueurEsku;
   }
@@ -25,6 +27,7 @@ public class Opposants {
   public Joueur joueurZaku() {
     return joueurZaku;
   }
+
 
   public Iterator<Joueur> itererDansLOrdre() {
     return new IteratorInfini(this);
