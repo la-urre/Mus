@@ -66,6 +66,7 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
 
   @Override
   public void nouvellePhase(Phase phase) {
+    afficherMain(joueurCourant);
     println("Nouvelle phase: " + phase.nom());
   }
 
