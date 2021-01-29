@@ -7,7 +7,7 @@ import com.montaury.mus.jeu.tour.Tour;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
+//Classe Manche
 public class Manche {
   private final AffichageEvenementsDeJeu affichage;
 
@@ -18,7 +18,7 @@ public class Manche {
   public Resultat jouer(Opposants opposants) {
     affichage.nouvelleManche();
     Score score = new Score(opposants);
-    do {
+    do { //fait un tour tant qu'il n'y  a pas de vainqueur
       new Tour(affichage).jouer(opposants, score);
       affichage.tourTermine(opposants, score);
       opposants.tourner();
