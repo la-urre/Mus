@@ -20,10 +20,12 @@ public class Partie {
     affichage.nouvellePartie();
     Partie.Score score = new Partie.Score(opposants);
     Optional<Joueur> vainqueur;
+
     do {
       Manche.Resultat resultat = new Manche(affichage).jouer(opposants);
       vainqueur = score.enregistrer(resultat);
       affichage.mancheTerminee(score);
+
     } while (vainqueur.isEmpty());
     return new Resultat(vainqueur.get(), score);
   }

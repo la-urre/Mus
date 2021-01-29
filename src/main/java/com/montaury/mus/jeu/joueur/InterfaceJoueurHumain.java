@@ -10,6 +10,8 @@ import com.montaury.mus.jeu.tour.phases.dialogue.Kanta;
 import com.montaury.mus.jeu.tour.phases.dialogue.Paso;
 import com.montaury.mus.jeu.tour.phases.dialogue.Tira;
 import com.montaury.mus.jeu.tour.phases.dialogue.TypeChoix;
+
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -30,10 +32,28 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
   public List<Carte> cartesAJeter() {
     println("Veuillez saisir les cartes à jeter (ex: 1,3) :");
     String aJeter = scanner.next();
-    return Arrays.stream(aJeter.split(","))
+    List listeCartesAJeter = Arrays.stream(aJeter.split(","))
       .mapToInt(Integer::parseInt)
       .mapToObj(indiceCarte -> main.cartesDuPlusGrandAuPlusPetit().get(indiceCarte - 1))
       .collect(Collectors.toList());
+    if(listeCartesAJeter.size()>4) {
+      println("Vous avez saisit trop de cartes, Réessayez");
+      return cartesAJeter();
+    }else if(listeCartesAJeter.size()==0){
+      println("Vous n'avez saisit aucunes cartes, Réessayez");
+      return cartesAJeter();
+    }else{
+      for (Object carte:listeCartesAJeter) {
+        if((Integer)carte<1 && (Integer)carte>4){
+          println("Carte saisie érroné, Réessayez");
+          return cartesAJeter();
+        }
+      }
+    }
+    return listeCartesAJeter;
+
+
+
   }
 
   @Override
