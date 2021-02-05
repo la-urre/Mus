@@ -17,6 +17,18 @@ class PaquetTest {
   }
 
   @Test
+  void devrait_() {
+    Paquet paquet = new Paquet(List.of(Carte.AS_COUPE, Carte.DEUX_EPEE), new Defausse());
+
+    List<Carte> cartes = paquet.tirer(1);
+
+    assertThat(cartes).containsOnly(Carte.AS_COUPE);
+  }
+
+
+
+
+  @Test
   void devrait_melanger_la_defausse_et_reconstituer_le_paquet_s_il_est_epuise() {
     Paquet paquet = new Paquet(List.of(Carte.QUATRE_EPEE), defausseAvec(List.of(Carte.CINQ_COUPE)));
 
@@ -24,4 +36,6 @@ class PaquetTest {
 
     assertThat(cartes).containsExactly(Carte.QUATRE_EPEE, Carte.CINQ_COUPE);
   }
+
+
 }
