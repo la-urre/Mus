@@ -33,6 +33,7 @@ public class Mus {
       }
     }
     while (mus);
+
   }
 
   private void completerMain(AffichageEvenementsDeJeu affichage, Joueur joueur) {

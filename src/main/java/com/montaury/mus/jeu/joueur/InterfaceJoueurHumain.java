@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class InterfaceJoueurHumain implements InterfaceJoueur {
 
@@ -28,12 +29,40 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
 
   @Override
   public List<Carte> cartesAJeter() {
+    boolean saisieCorrecte = true;
     println("Veuillez saisir les cartes à jeter (ex: 1,3) :");
     String aJeter = scanner.next();
+
+    do {
+      int[] arrayInt;
+      try {
+        // renvoie NumberFormatException si la saisie n'est pas un entier
+        arrayInt = Arrays.stream(aJeter.split(",")).mapToInt(Integer::parseInt).toArray();
+
+        for (int valeurCarte : arrayInt) {
+
+          if (valeurCarte < 1 || valeurCarte > 4) { // verifie si l'indice de la carte est valide
+
+            saisieCorrecte = false;
+            throw new NumberFormatException("Numero de carte non compris entre 1 et 4");
+
+          } else {
+            saisieCorrecte = true;
+          }
+        }
+
+      } catch (NumberFormatException e) {
+
+        System.out.println("Les chiffres doivent etre compris entre 1 à 4 et séparés par des virgules.");
+        aJeter = scanner.next();
+      }
+
+    } while (saisieCorrecte == false);
+
     return Arrays.stream(aJeter.split(","))
-      .mapToInt(Integer::parseInt)
-      .mapToObj(indiceCarte -> main.cartesDuPlusGrandAuPlusPetit().get(indiceCarte - 1))
-      .collect(Collectors.toList());
+            .mapToInt(Integer::parseInt)
+            .mapToObj(indiceCarte -> main.cartesDuPlusGrandAuPlusPetit().get(indiceCarte - 1))
+            .collect(Collectors.toList());
   }
 
   @Override
