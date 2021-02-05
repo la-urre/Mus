@@ -34,26 +34,15 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
     String aJeter = scanner.next();
     List listeCartesAJeter = Arrays.stream(aJeter.split(","))
       .mapToInt(Integer::parseInt)
-      .mapToObj(indiceCarte -> main.cartesDuPlusGrandAuPlusPetit().get(indiceCarte - 1))
+      .mapToObj(indiceCarte -> main.cartesDuPlusGrandAuPlusPetit()
+      .get(indiceCarte - 1))
       .collect(Collectors.toList());
-    if(listeCartesAJeter.size()>4) {
-      println("Vous avez saisit trop de cartes, Réessayez");
-      return cartesAJeter();
-    }else if(listeCartesAJeter.size()==0){
+    println("test");
+    if(listeCartesAJeter.size()==0) {
       println("Vous n'avez saisit aucunes cartes, Réessayez");
       return cartesAJeter();
-    }else{
-      for (Object carte:listeCartesAJeter) {
-        if((Integer)carte<1 && (Integer)carte>4){
-          println("Carte saisie érroné, Réessayez");
-          return cartesAJeter();
-        }
-
-      }
     }
     return listeCartesAJeter;
-
-
 
   }
 
