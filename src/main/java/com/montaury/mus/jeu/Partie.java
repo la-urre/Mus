@@ -17,7 +17,10 @@ public class Partie {
   }
 
   public Resultat jouer(Opposants opposants) {
+
     affichage.nouvellePartie();
+
+
     Partie.Score score = new Partie.Score(opposants);
     Optional<Joueur> vainqueur;
     do {

@@ -31,7 +31,8 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
     println("Manche terminée");
     score.resultatManches().forEach(manche -> println("Vainqueur : " + manche.vainqueur().nom() + ", score du perdant : " + manche.pointsVaincu()));
   }
-//affichage du role de l'ordinateur si il est Esku
+
+  //affichage du role de l'ordinateur si il est Esku
   @Override
   public void nouveauTour(Opposants opposants) {
     println(opposants.joueurEsku().nom() + " est esku");
@@ -84,5 +85,9 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
 
   private void println() {
     System.out.println();
+  }
+
+  public void quitter() {
+    System.exit(0);
   }
 }
