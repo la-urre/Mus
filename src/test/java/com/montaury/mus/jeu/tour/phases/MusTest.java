@@ -2,10 +2,8 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.carte.Carte;
 import com.montaury.mus.jeu.carte.Defausse;
-import com.montaury.mus.jeu.joueur.AffichageConsoleEvenementsDeJeu;
-import com.montaury.mus.jeu.joueur.InterfaceJoueur;
-import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.joueur.*;
+
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +26,16 @@ class MusTest {
     joueurEsku = new Joueur("J1", interfaceJoueurEsku);
     joueurZaku = new Joueur("J2", interfaceJoueurZaku);
     opposants = new Opposants(joueurEsku, joueurZaku);
+  }
+  @Test
+  void devrait_renvoyer_faux_car_le_joueur_fait_une_mauvaise_saisie() {
+
+    monInterfaceHumain=new InterfaceJoueurHumain();
+
+    String [] saisieUtilisateur = {"-","d","m","40",",20","1,50","60,1"};
+
+    for(int i=0; i < saisieUtilisateur.length ; i++) assertThat(monInterfaceHumain.cartesAJeterCorrectes(saisieUtilisateur[i])).isEqualTo(false);
+
   }
 
   @Test
@@ -98,6 +106,7 @@ class MusTest {
   private Mus mus;
   private InterfaceJoueur interfaceJoueurEsku;
   private InterfaceJoueur interfaceJoueurZaku;
+  private InterfaceJoueurHumain monInterfaceHumain;
   private Joueur joueurEsku;
   private Joueur joueurZaku;
   private Opposants opposants;
