@@ -12,6 +12,7 @@ public class Joueur {
     return new Joueur(nom, new InterfaceJoueurOrdinateur());
   }
 
+  private Equipe equipe;
   private final String nom;
   public final InterfaceJoueur interfaceJoueur;
   private final Main main = Main.vide();
@@ -33,4 +34,10 @@ public class Joueur {
     main.ajouter(cartes);
     interfaceJoueur.nouvelleMain(main);
   }
+  public Equipe equipe(){
+    return equipe;
+  };
+  public void equipe(Equipe equipe){
+    this.equipe = equipe;
+  };
 }

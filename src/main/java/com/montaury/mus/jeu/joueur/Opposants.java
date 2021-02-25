@@ -48,7 +48,9 @@ public class Opposants {
 
     return joueursDansLordre;
   }
-
+  public List<Equipe> equipes(){
+    return equipes;
+  }
   private void definirRoles(){
     joueurEsku = joueursDansLordre.getFirst();
     joueurZaku = joueursDansLordre.getLast();

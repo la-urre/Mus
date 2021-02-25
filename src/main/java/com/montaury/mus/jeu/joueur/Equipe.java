@@ -8,6 +8,8 @@ public class Equipe {
     String nom;
 
     public Equipe(Joueur j1,Joueur j2,String nomEquipe){
+        j1.equipe(this);
+        j2.equipe(this);
         joueurs = new ArrayList<Joueur>();
         joueurs.add(j1);
         joueurs.add(j2);
