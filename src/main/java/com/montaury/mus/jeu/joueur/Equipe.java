@@ -17,14 +17,14 @@ public class Equipe {
     public static Equipe equipeJoueur(Joueur humain){
         return new Equipe(
                 humain,
-                Joueur.ordinateur(),
+                Joueur.ordinateur("Ordi1"),
                 "Equipe 1"
         );
     };
     public static Equipe equipeOrdi(){
         return new Equipe(
-                Joueur.ordinateur(),
-                Joueur.ordinateur(),
+                Joueur.ordinateur("Ordi2"),
+                Joueur.ordinateur("Ordi3"),
                 "Equipe 2"
         );
     };
