@@ -4,17 +4,19 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Opposants {
-  private Joueur joueurEsku;
-  private Joueur joueurDeux;
-  private Joueur joueurTrois;
-  private Joueur joueurZaku;
+ private Equipe equipeHumain ;
+ private Equipe equipeOrdinateur;
 
-  public Opposants(Joueur joueurEsku,Joueur joueurDeux, Joueur joueurTrois, Joueur joueurZaku) {
-    this.joueurEsku = joueurEsku;
-    this.joueurDeux = joueurDeux;
-    this.joueurTrois = joueurTrois;
-    this.joueurZaku = joueurZaku;
+  public Opposants(Joueur joueurHumain,Joueur joueurOrdinateurEquipeHumain, Joueur joueurOrdinateurEquipeOrdinateur, Joueur joueurOrdinateur2EquipeOrdinateur) {
+  this.equipeHumain= new Equipe (joueurHumain,joueurOrdinateurEquipeHumain);
+    this.equipeOrdinateur = new Equipe (joueurOrdinateurEquipeOrdinateur,joueurOrdinateur2EquipeOrdinateur);
   }
+
+
+  private Joueur joueurEsku = equipeHumain.joueurA();
+  private Joueur joueurDeux = equipeOrdinateur.joueurA();
+  private Joueur joueurTrois =equipeHumain.joueurB();
+  private Joueur joueurZaku = equipeOrdinateur.joueurB();
 
   public void tourner() {
     Joueur tmp = joueurEsku;
@@ -68,7 +70,7 @@ public class Opposants {
     @Override
     public Joueur next() {
       Joueur next = suivant;
-      if (opposants.joueurEsku.equals(suivant)) {
+      if (opposants.equipeOrdinateur.joueurA().equals(suivant)) {
         suivant = opposants.joueurDeux;
       } else if (opposants.joueurDeux.equals(suivant)) {
         suivant = opposants.joueurTrois;

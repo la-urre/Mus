@@ -23,9 +23,18 @@ public class Jeu extends Phase {
 
   @Override
   protected Joueur meilleurParmi(Opposants opposants) {
-    return rangDuJeu(opposants.joueurEsku()) <= rangDuJeu(opposants.joueurZaku()) ?
-      opposants.joueurEsku() :
-      opposants.joueurZaku();
+
+    Joueur meilleurJeuParmiEskuEtDeux = rangDuJeu(opposants.joueurEsku()) <= rangDuJeu(opposants.joueurDeux()) ?
+        opposants.joueurEsku() :
+        opposants.joueurDeux();
+
+    Joueur meilleurJeuParmiZakuEtTrois = rangDuJeu(opposants.joueurTrois()) <= rangDuJeu(opposants.joueurZaku()) ?
+            opposants.joueurTrois() :
+            opposants.joueurZaku();
+
+return rangDuJeu(meilleurJeuParmiEskuEtDeux) <= rangDuJeu(meilleurJeuParmiZakuEtTrois) ?
+        meilleurJeuParmiEskuEtDeux:
+        meilleurJeuParmiZakuEtTrois;
   }
 
   private int rangDuJeu(Joueur joueur) {

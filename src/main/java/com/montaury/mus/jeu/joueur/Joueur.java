@@ -13,10 +13,9 @@ public class Joueur {
 
   //constructeur d'un joueur ordinateur
   //retourne un objet Joueur
-  public static Joueur ordinateur() {
-    return new Joueur("Ordinateur", new InterfaceJoueurOrdinateur());
+  public static Joueur ordinateur(String nom) {
+    return new Joueur(nom, new InterfaceJoueurOrdinateur());
   }
-
   private final String nom;
   public final InterfaceJoueur interfaceJoueur;
   private final Main main = Main.vide();
