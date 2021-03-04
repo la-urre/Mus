@@ -11,6 +11,7 @@ public class Equipe  {
     private final List<Joueur> joueurs;
     private String nom;
     private boolean peutParler = true;
+    private int score = 0;
 
     public Equipe (Joueur joueur, String nomEquipe, boolean partieAQuatre) {
 
@@ -34,4 +35,10 @@ public class Equipe  {
     public boolean getPeutParler() { return this.peutParler; }
 
     public void setPeutParler(boolean permission) { this.peutParler = permission; }
+
+    public int getScore() { return this.score; }
+
+    public void setScore(int points) { this.score = points; }
+
+    public void addPoints(int points) { this.score += points; }
 }

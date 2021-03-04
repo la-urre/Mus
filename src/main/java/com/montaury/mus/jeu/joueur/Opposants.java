@@ -16,7 +16,6 @@ public class Opposants {
 
     this.joueurEsku = equipeEsku.getJoueurs().get(0);
 
-
     for (int i=0 ; i < equipeEsku.getJoueurs().size() ; i++ )
     {
       listeJoueursJeu.add(equipeEsku.getJoueurs().get(i));
@@ -26,9 +25,7 @@ public class Opposants {
   }
 
   public void tourner() {
-    Joueur tmp = joueurEsku;
-    joueurEsku = joueurZaku;
-    joueurZaku = tmp;
+    joueurEsku = listeJoueursJeu.get((listeJoueursJeu.indexOf(this.joueurEsku)+1)%4);
   }
 
   public Joueur joueurEsku() {
@@ -44,7 +41,7 @@ public class Opposants {
   }
 
   public List<Joueur> dansLOrdre() {
-    return List.of(joueurEsku, joueurZaku);
+    return this.listeJoueursJeu;
   }
 
   private static class IteratorInfini implements Iterator<Joueur> {
@@ -64,7 +61,8 @@ public class Opposants {
     @Override
     public Joueur next() {
       Joueur next = suivant;
-      suivant = suivant == opposants.joueurEsku ? opposants.joueurZaku : opposants.joueurEsku;
+      int indexSuivant = (opposants.listeJoueursJeu.indexOf(suivant)+1)%4;
+      suivant = opposants.listeJoueursJeu.get(indexSuivant);
       return next;
     }
   }
