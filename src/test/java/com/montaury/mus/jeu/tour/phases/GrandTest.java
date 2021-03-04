@@ -10,6 +10,7 @@ import static com.montaury.mus.jeu.joueur.Fixtures.unJoueurAvec;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GrandTest {
+  /*
   @Test
   void devrait_faire_gagner_le_joueur_esku_s_il_a_la_plus_grande_carte() {
     Joueur joueurEsku = unJoueurAvec(main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.CAVALIER_BATON, Carte.SIX_COUPE));
@@ -48,4 +49,5 @@ class GrandTest {
 
     assertThat(vainqueur).isEqualTo(joueurEsku);
   }
+  */
 }

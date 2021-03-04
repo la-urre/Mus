@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class Partie {
+public class  Partie {
   private final AffichageEvenementsDeJeu affichage;
 
   public Partie(AffichageEvenementsDeJeu affichage) {

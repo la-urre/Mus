@@ -61,7 +61,11 @@ public abstract class Phase {
   }
 
   public final boolean peutSeDerouler(Opposants opposants) {
-    return peutParticiper(opposants.joueurEsku()) && peutParticiper(opposants.joueurZaku());
+
+    for (Joueur j:opposants.dansLOrdre()) {
+      if(!peutParticiper(j))return false;
+    }
+    return true;
   }
 
   protected boolean peutParticiper(Joueur joueur) {
