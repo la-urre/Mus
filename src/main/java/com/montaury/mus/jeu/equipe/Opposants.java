@@ -1,6 +1,5 @@
 package com.montaury.mus.jeu.equipe;
 
-import com.montaury.mus.jeu.equipe.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 
 import java.util.Iterator;
@@ -8,27 +7,27 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Opposants {
-  private Joueur joueurEsku;
-  private Joueur joueurZaku;
+  private Equipe equipe1;
+  private Equipe equipe2;
   
 
   public Opposants(Equipe joueurEsku, Equipe joueurZaku) {
-    this.joueurEsku = joueurEsku.joueur1;
-    this.joueurZaku = joueurZaku.joueur2;
+    this.equipe1 = joueurEsku;
+    this.equipe2 = joueurZaku;
   }
   // permet de changer celui qui distribue et celui qui parle en premier
   public void tourner() {
-    Joueur Joueurtamp = joueurZaku;
-    joueurZaku = joueurEsku;
-    joueurEsku = Joueurtamp;
+    Joueur Joueurtamp = equipe2.joueur1;
+    equipe2.joueur1 = equipe1.joueur1;
+    equipe1.joueur1 = Joueurtamp;
   }
 
   public Joueur joueurEsku() {
-    return joueurEsku;
+    return equipe1.joueur1;
   }
 
   public Joueur joueurZaku() {
-    return joueurZaku;
+    return equipe2.joueur1;
   }
 
   public Iterator<Joueur> itererDansLOrdre() { //permet de passer d'un Joueur a l autre pour avoir ses données
@@ -36,7 +35,7 @@ public class Opposants {
   }
 
   public List<Joueur> dansLOrdre() {
-    return List.of(joueurEsku, joueurZaku);
+    return List.of(equipe1.joueur1, equipe2.joueur1, equipe1.joueur2, equipe2.joueur2);
   }
 
   private static class IteratorInfini implements Iterator<Joueur> {
@@ -45,7 +44,7 @@ public class Opposants {
 
     public IteratorInfini(Opposants opposants) {
       this.opposants = opposants;
-      suivant = opposants.joueurEsku;
+      suivant = opposants.equipe1.joueur1;
     }
 
     @Override
@@ -56,7 +55,27 @@ public class Opposants {
     @Override
     public Joueur next() {
       Joueur next = suivant;
-      suivant = suivant == opposants.joueurEsku ? opposants.joueurZaku : opposants.joueurEsku;
+      if (opposants.equipe1.joueur1 == next)
+      {
+        suivant = opposants.equipe2.joueur1;
+      }
+
+      else if (opposants.equipe2.joueur1 == next)
+      {
+        suivant = opposants.equipe1.joueur2;
+      }
+
+      else if (opposants.equipe1.joueur2 == next)
+      {
+        suivant = opposants.equipe2.joueur2;
+      }
+
+      else if (opposants.equipe2.joueur2 == next)
+      {
+        suivant = opposants.equipe1.joueur1;
+      }
+
+      // suivant = suivant == opposants.joueurEsku.joueur1 ? opposants.joueurZaku.joueur1 : opposants.joueurEsku.joueur1;
       return next;
     }
   }

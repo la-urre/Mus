@@ -6,7 +6,7 @@ import com.montaury.mus.jeu.joueur.Joueur;
 public class Equipe {
     //attribut
    public Joueur joueur1;
-    public Joueur joueur2;
+   public Joueur joueur2;
 
     //constructeur
     public Equipe(Joueur j1, Joueur j2)
