@@ -6,17 +6,19 @@ import java.util.List;
 public class Opposants {
  private Equipe equipeHumain ;
  private Equipe equipeOrdinateur;
+ private Joueur joueurEsku;
+ private Joueur joueurDeux;
+ private Joueur joueurTrois;
+ private Joueur joueurZaku;
 
   public Opposants(Joueur joueurHumain,Joueur joueurOrdinateurEquipeHumain, Joueur joueurOrdinateurEquipeOrdinateur, Joueur joueurOrdinateur2EquipeOrdinateur) {
-  this.equipeHumain= new Equipe (joueurHumain,joueurOrdinateurEquipeHumain);
-    this.equipeOrdinateur = new Equipe (joueurOrdinateurEquipeOrdinateur,joueurOrdinateur2EquipeOrdinateur);
+  this.equipeHumain= new Equipe (joueurHumain,joueurOrdinateurEquipeHumain,"Humain");
+    this.equipeOrdinateur = new Equipe (joueurOrdinateurEquipeOrdinateur,joueurOrdinateur2EquipeOrdinateur,"Ordinateur");
+    this.joueurEsku = equipeHumain.joueurA();
+    this.joueurDeux = equipeOrdinateur.joueurA();
+    this.joueurTrois = equipeHumain.joueurB();
+    this.joueurZaku = equipeOrdinateur.joueurB();
   }
-
-
-  private Joueur joueurEsku = equipeHumain.joueurA();
-  private Joueur joueurDeux = equipeOrdinateur.joueurA();
-  private Joueur joueurTrois =equipeHumain.joueurB();
-  private Joueur joueurZaku = equipeOrdinateur.joueurB();
 
   public void tourner() {
     Joueur tmp = joueurEsku;
@@ -43,6 +45,10 @@ public class Opposants {
   public Joueur joueurZaku() {
     return joueurZaku;
   }
+
+  public Equipe equipeHumain(){return equipeHumain;}
+
+  public Equipe equipeOrdinateur(){return equipeOrdinateur;}
 
 
   public Iterator<Joueur> itererDansLOrdre() {
