@@ -2,6 +2,7 @@ package com.montaury.mus.jeu.joueur;
 
 import com.montaury.mus.jeu.carte.Carte;
 import java.util.List;
+import com.montaury.mus.jeu.joueur.Equipe;
 
 public class Joueur {
   public static Joueur humain(String nom) {
@@ -15,6 +16,7 @@ public class Joueur {
   private final String nom;
   public final InterfaceJoueur interfaceJoueur;
   private final Main main = Main.vide();
+  private Equipe equipe;
 
   public Joueur(String nom, InterfaceJoueur interfaceJoueur) {
     this.nom = nom;
@@ -33,4 +35,8 @@ public class Joueur {
     main.ajouter(cartes);
     interfaceJoueur.nouvelleMain(main);
   }
+
+  public Equipe getEquipe() { return this.equipe; }
+
+  public void setEquipe(Equipe newEquipe) { this.equipe = newEquipe; }
 }
