@@ -24,10 +24,14 @@ class MusTest {
     defausse = new Defausse();
     mus = new Mus(paquetEntierCroissant(), defausse, new AffichageConsoleEvenementsDeJeu(joueurEsku));
     interfaceJoueurEsku = mock(InterfaceJoueur.class);
+    interfaceJoueurDeux = mock(InterfaceJoueur.class);
+    interfaceJoueurTrois = mock(InterfaceJoueur.class);
     interfaceJoueurZaku = mock(InterfaceJoueur.class);
     joueurEsku = new Joueur("J1", interfaceJoueurEsku);
-    joueurZaku = new Joueur("J2", interfaceJoueurZaku);
-    opposants = new Opposants(joueurEsku, joueurZaku);
+    joueurDeux = new Joueur("J2", interfaceJoueurDeux);
+    joueurTrois = new Joueur("J3", interfaceJoueurTrois);
+    joueurZaku = new Joueur("J4", interfaceJoueurZaku);
+    opposants = new Opposants(joueurEsku, joueurDeux, joueurTrois, joueurZaku);
   }
 
   @Test
@@ -97,8 +101,12 @@ class MusTest {
 
   private Mus mus;
   private InterfaceJoueur interfaceJoueurEsku;
+  private InterfaceJoueur interfaceJoueurDeux;
+  private InterfaceJoueur interfaceJoueurTrois;
   private InterfaceJoueur interfaceJoueurZaku;
   private Joueur joueurEsku;
+  private Joueur joueurDeux;
+  private Joueur joueurTrois;
   private Joueur joueurZaku;
   private Opposants opposants;
   private Defausse defausse;

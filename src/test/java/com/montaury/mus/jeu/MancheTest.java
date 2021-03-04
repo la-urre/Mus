@@ -25,17 +25,22 @@ class MancheTest {
   @BeforeEach
   void setUp() {
     interfaceJoueurEsku = mock(InterfaceJoueur.class);
+    interfaceJoueurDeux = mock(InterfaceJoueur.class);
+    interfaceJoueurTrois = mock(InterfaceJoueur.class);
     interfaceJoueurZaku = mock(InterfaceJoueur.class);
+
     joueurEsku = new Joueur("J1", interfaceJoueurEsku);
-    joueurZaku = new Joueur("J2", interfaceJoueurZaku);
-    opposants = new Opposants(joueurEsku, joueurZaku);
+    joueurDeux = new Joueur("J2", interfaceJoueurDeux);
+    joueurTrois = new Joueur("J3", interfaceJoueurTrois);
+    joueurZaku = new Joueur("J4", interfaceJoueurZaku);
+    opposants = new Opposants(joueurEsku, joueurDeux, joueurTrois, joueurZaku);
     manche = new Manche(mock(AffichageEvenementsDeJeu.class));
   }
 
   @Test
   void devrait_terminer_la_manche_si_hordago_au_grand() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Hordago());
-    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Kanta());
+    when(interfaceJoueurDeux.faireChoixParmi(any())).thenReturn(new Kanta());
 
     Manche.Resultat resultat = manche.jouer(opposants);
 
@@ -61,12 +66,16 @@ class MancheTest {
 
     manche.jouer(opposants);
 
-    assertThat(opposants.dansLOrdre()).containsExactly(joueurZaku, joueurEsku);
+    assertThat(opposants.dansLOrdre()).containsExactly(joueurZaku, joueurEsku, joueurDeux, joueurTrois);
   }
 
   private InterfaceJoueur interfaceJoueurEsku;
+  private InterfaceJoueur interfaceJoueurDeux;
+  private InterfaceJoueur interfaceJoueurTrois;
   private InterfaceJoueur interfaceJoueurZaku;
   private Joueur joueurEsku;
+  private Joueur joueurDeux;
+  private Joueur joueurTrois;
   private Joueur joueurZaku;
   private Opposants opposants;
 

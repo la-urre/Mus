@@ -19,17 +19,21 @@ class PartieTest {
   @BeforeEach
   void setUp() {
     interfaceJoueurEsku = mock(InterfaceJoueur.class);
+    interfaceJoueurDeux = mock(InterfaceJoueur.class);
+    interfaceJoueurTrois = mock(InterfaceJoueur.class);
     interfaceJoueurZaku = mock(InterfaceJoueur.class);
     Joueur joueurEsku = new Joueur("J1", interfaceJoueurEsku);
-    Joueur joueurZaku = new Joueur("J2", interfaceJoueurZaku);
-    opposants = new Opposants(joueurEsku, joueurZaku);
+    Joueur joueurDeux = new Joueur("J2", interfaceJoueurDeux);
+    Joueur joueurTrois = new Joueur("J3", interfaceJoueurTrois);
+    Joueur joueurZaku = new Joueur("J4", interfaceJoueurZaku);
+    opposants = new Opposants(joueurEsku, joueurDeux, joueurTrois, joueurZaku);
     partie = new Partie(mock(AffichageEvenementsDeJeu.class));
   }
 
   @Test
   void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Hordago());
-    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Kanta());
+    when(interfaceJoueurDeux.faireChoixParmi(any())).thenReturn(new Kanta());
 
     Partie.Resultat resultat = partie.jouer(opposants);
 
@@ -38,6 +42,8 @@ class PartieTest {
   }
 
   private InterfaceJoueur interfaceJoueurEsku;
+  private InterfaceJoueur interfaceJoueurDeux;
+  private InterfaceJoueur interfaceJoueurTrois;
   private InterfaceJoueur interfaceJoueurZaku;
   private Opposants opposants;
   private Partie partie;
