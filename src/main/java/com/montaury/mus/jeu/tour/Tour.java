@@ -4,7 +4,7 @@ import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.carte.Defausse;
 import com.montaury.mus.jeu.carte.Paquet;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
-import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.equipe.Opposants;
 import com.montaury.mus.jeu.tour.phases.FauxJeu;
 import com.montaury.mus.jeu.tour.phases.Grand;
 import com.montaury.mus.jeu.tour.phases.Jeu;

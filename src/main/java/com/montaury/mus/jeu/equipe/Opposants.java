@@ -1,47 +1,51 @@
 package com.montaury.mus.jeu.equipe;
 
+import com.montaury.mus.jeu.equipe.Equipe;
+import com.montaury.mus.jeu.joueur.Joueur;
+
 import java.util.Iterator;
+
 import java.util.List;
 
 public class Opposants {
-  private Equipe equipeEsku;
-  private Equipe equipeZaku;
+  private Joueur joueurEsku;
+  private Joueur joueurZaku;
   
 
-  public Opposants(Equipe equipeEsku, Equipe equipeZaku) {
-    this.equipeEsku = equipeEsku;
-    this.equipeZaku = equipeZaku;
+  public Opposants(Equipe joueurEsku, Equipe joueurZaku) {
+    this.joueurEsku = joueurEsku.joueur1;
+    this.joueurZaku = joueurZaku.joueur2;
   }
   // permet de changer celui qui distribue et celui qui parle en premier
   public void tourner() {
-    Equipe equipetamp = equipeZaku;
-    equipeZaku = equipeEsku;
-    equipeEsku = equipetamp;
+    Joueur Joueurtamp = joueurZaku;
+    joueurZaku = joueurEsku;
+    joueurEsku = Joueurtamp;
   }
 
-  public Equipe equipeEsku() {
-    return equipeEsku;
+  public Joueur joueurEsku() {
+    return joueurEsku;
   }
 
-  public Equipe equipeZaku() {
-    return equipeZaku;
+  public Joueur joueurZaku() {
+    return joueurZaku;
   }
 
-  public Iterator<Equipe> itererDansLOrdre() { //permet de passer d'un equipe a l autre pour avoir ses données
+  public Iterator<Joueur> itererDansLOrdre() { //permet de passer d'un Joueur a l autre pour avoir ses données
     return new IteratorInfini(this);
   }
 
-  public List<Equipe> dansLOrdre() {
-    return List.of(equipeEsku, equipeZaku);
+  public List<Joueur> dansLOrdre() {
+    return List.of(joueurEsku, joueurZaku);
   }
 
-  private static class IteratorInfini implements Iterator<Equipe> {
+  private static class IteratorInfini implements Iterator<Joueur> {
     private final Opposants opposants;
-    private Equipe suivant;
+    private Joueur suivant;
 
     public IteratorInfini(Opposants opposants) {
       this.opposants = opposants;
-      suivant = opposants.equipeEsku;
+      suivant = opposants.joueurEsku;
     }
 
     @Override
@@ -50,9 +54,9 @@ public class Opposants {
     }
 
     @Override
-    public Equipe next() {
-      Equipe next = suivant;
-      suivant = suivant == opposants.equipeEsku ? opposants.equipeZaku : opposants.equipeEsku;
+    public Joueur next() {
+      Joueur next = suivant;
+      suivant = suivant == opposants.joueurEsku ? opposants.joueurZaku : opposants.joueurEsku;
       return next;
     }
   }

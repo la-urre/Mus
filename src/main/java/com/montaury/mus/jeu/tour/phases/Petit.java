@@ -4,7 +4,7 @@ import com.montaury.mus.jeu.carte.Carte;
 import com.montaury.mus.jeu.carte.ValeurCarte;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
-import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.equipe.Opposants;
 import java.util.List;
 
 import static com.montaury.mus.jeu.carte.ValeurCarte.Comparaison.PLUS_GRANDE;

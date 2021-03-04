@@ -1,9 +1,10 @@
 package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.Manche;
+import com.montaury.mus.jeu.equipe.Opposants;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.equipe.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
 import com.montaury.mus.jeu.tour.phases.dialogue.DialogueTermine;
 import java.util.List;
