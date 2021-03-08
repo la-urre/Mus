@@ -28,7 +28,10 @@ class MancheTest {
     interfaceJoueurZaku = mock(InterfaceJoueur.class);
     joueurEsku = new Joueur("J1", interfaceJoueurEsku);
     joueurZaku = new Joueur("J2", interfaceJoueurZaku);
-    opposants = new Opposants(joueurEsku, joueurZaku);
+
+    equipeEsku = new Equipe("E1", joueurEsku);
+    equipeZaku = new Equipe("E2", joueurZaku);
+    opposants = new Opposants(equipeEsku, equipeZaku);
     manche = new Manche(mock(AffichageEvenementsDeJeu.class));
   }
 
@@ -68,6 +71,9 @@ class MancheTest {
   private InterfaceJoueur interfaceJoueurZaku;
   private Joueur joueurEsku;
   private Joueur joueurZaku;
+  private Equipe equipeEsku;
+  private Equipe equipeZaku;
+
   private Opposants opposants;
 
 }

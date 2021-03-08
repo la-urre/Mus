@@ -22,7 +22,11 @@ class PartieTest {
     interfaceJoueurZaku = mock(InterfaceJoueur.class);
     Joueur joueurEsku = new Joueur("J1", interfaceJoueurEsku);
     Joueur joueurZaku = new Joueur("J2", interfaceJoueurZaku);
-    opposants = new Opposants(joueurEsku, joueurZaku);
+
+    Equipe equipeEsku = new Equipe("E1", joueurEsku);
+    Equipe equipeZaku = new Equipe("E2", joueurZaku);
+
+    opposants = new Opposants(equipeEsku, equipeZaku);
     partie = new Partie(mock(AffichageEvenementsDeJeu.class));
   }
 

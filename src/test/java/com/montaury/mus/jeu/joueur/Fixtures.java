@@ -1,5 +1,6 @@
 package com.montaury.mus.jeu.joueur;
 
+import com.montaury.mus.jeu.Equipe;
 import com.montaury.mus.jeu.carte.Carte;
 import java.util.Arrays;
 
@@ -12,6 +13,14 @@ public class Fixtures {
     Joueur joueur = new Joueur("Ordinateur", new FausseInterfaceJoueur());
     joueur.donnerCartes(main.cartes());
     return joueur;
+  }
+
+  public static Equipe uneEquipe(){
+    return  new Equipe("equipeOrdinaeur", unJoueur());
+  }
+
+  public static Equipe uneEquipeAvec(Joueur joueurAvec){
+    return new Equipe("Ordinateur", joueurAvec);
   }
 
   public static Main main(Carte... cartes) {

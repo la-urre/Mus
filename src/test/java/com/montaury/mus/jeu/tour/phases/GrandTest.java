@@ -1,12 +1,12 @@
 package com.montaury.mus.jeu.tour.phases;
 
+import com.montaury.mus.jeu.Equipe;
 import com.montaury.mus.jeu.carte.Carte;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Opposants;
 import org.junit.jupiter.api.Test;
 
-import static com.montaury.mus.jeu.joueur.Fixtures.main;
-import static com.montaury.mus.jeu.joueur.Fixtures.unJoueurAvec;
+import static com.montaury.mus.jeu.joueur.Fixtures.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GrandTest {
@@ -15,7 +15,10 @@ class GrandTest {
     Joueur joueurEsku = unJoueurAvec(main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.CAVALIER_BATON, Carte.SIX_COUPE));
     Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.SEPT_BATON, Carte.AS_PIECE));
 
-    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(joueurEsku, joueurZaku));
+    Equipe equipeEsku = uneEquipeAvec(joueurEsku);
+    Equipe equipeZaku = uneEquipeAvec(joueurZaku);
+
+    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(equipeEsku, equipeZaku));
 
     assertThat(vainqueur).isEqualTo(joueurEsku);
   }
@@ -24,7 +27,10 @@ class GrandTest {
     Joueur joueurEsku = unJoueurAvec(main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE));
     Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.AS_PIECE));
 
-    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(joueurEsku, joueurZaku));
+    Equipe equipeEsku = uneEquipeAvec(joueurEsku);
+    Equipe equipeZaku = uneEquipeAvec(joueurZaku);
+
+    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(equipeEsku, equipeZaku));
 
     assertThat(vainqueur).isEqualTo(joueurZaku);
   }
@@ -34,7 +40,10 @@ class GrandTest {
     Joueur joueurEsku = unJoueurAvec(main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
     Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.VALET_PIECE, Carte.QUATRE_BATON, Carte.SEPT_PIECE));
 
-    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(joueurEsku, joueurZaku));
+    Equipe equipeEsku = uneEquipeAvec(joueurEsku);
+    Equipe equipeZaku = uneEquipeAvec(joueurZaku);
+
+    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(equipeEsku, equipeZaku));
 
     assertThat(vainqueur).isEqualTo(joueurZaku);
   }
@@ -44,7 +53,10 @@ class GrandTest {
     Joueur joueurEsku = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
     Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE));
 
-    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(joueurEsku, joueurZaku));
+    Equipe equipeEsku = uneEquipeAvec(joueurEsku);
+    Equipe equipeZaku = uneEquipeAvec(joueurZaku);
+
+    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(equipeEsku, equipeZaku));
 
     assertThat(vainqueur).isEqualTo(joueurEsku);
   }

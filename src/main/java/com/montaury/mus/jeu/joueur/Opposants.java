@@ -1,5 +1,7 @@
 package com.montaury.mus.jeu.joueur;
 
+import com.montaury.mus.jeu.Equipe;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -7,9 +9,15 @@ public class Opposants {
   private Joueur joueurEsku;
   private Joueur joueurZaku;
 
-  public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
-    this.joueurEsku = joueurEsku;
-    this.joueurZaku = joueurZaku;
+  private Equipe equipeEsku;
+  private  Equipe equipeZaku;
+
+  public Opposants(Equipe equipeEsku, Equipe equipeZaku) {
+    this.equipeEsku = equipeEsku;
+    this.equipeZaku = equipeZaku;
+
+    this.joueurEsku = equipeEsku.getJoueurUn();
+    this.joueurZaku = equipeZaku.getJoueurUn();
   }
 
   public void tourner() {
