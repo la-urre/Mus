@@ -6,6 +6,7 @@ import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Hordago;
 import com.montaury.mus.jeu.tour.phases.dialogue.Kanta;
+import com.montaury.mus.jeu.tour.phases.dialogue.Tira;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,9 +32,11 @@ class PartieTest {
   }
 
   @Test
-  void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
+  void devrait_faire_gagner_la_premiere_equipe_a_3_manches() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Hordago());
     when(interfaceJoueurDeux.faireChoixParmi(any())).thenReturn(new Kanta());
+    when(interfaceJoueurTrois.faireChoixParmi(any())).thenReturn(new Tira());
+    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Tira());
 
     Partie.Resultat resultat = partie.jouer(opposants);
 

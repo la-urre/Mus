@@ -11,8 +11,8 @@ public class Opposants {
  private Joueur joueurTrois;
  private Joueur joueurZaku;
 
-  public Opposants(Joueur joueurHumain,Joueur joueurOrdinateurEquipeHumain, Joueur joueurOrdinateurEquipeOrdinateur, Joueur joueurOrdinateur2EquipeOrdinateur) {
-  this.equipeHumain= new Equipe (joueurHumain,joueurOrdinateurEquipeHumain,"Humain");
+  public Opposants(Joueur joueurHumain,Joueur joueurOrdinateurEquipeOrdinateur, Joueur joueurOrdinateurEquipeHumain, Joueur joueurOrdinateur2EquipeOrdinateur) {
+    this.equipeHumain= new Equipe (joueurHumain,joueurOrdinateurEquipeHumain,"Humain");
     this.equipeOrdinateur = new Equipe (joueurOrdinateurEquipeOrdinateur,joueurOrdinateur2EquipeOrdinateur,"Ordinateur");
     this.joueurEsku = equipeHumain.joueurA();
     this.joueurDeux = equipeOrdinateur.joueurA();
@@ -30,34 +30,22 @@ public class Opposants {
 
 
   //Getter
-  public Joueur joueurEsku() {
-    return joueurEsku;
-  }
+  public Joueur joueurEsku() {return joueurEsku;}
 
-  public Joueur joueurDeux() {
-    return joueurDeux;
-  }
+  public Joueur joueurDeux() {return joueurDeux; }
 
-  public Joueur joueurTrois() {
-    return joueurTrois;
-  }
+  public Joueur joueurTrois() {return joueurTrois;}
 
-  public Joueur joueurZaku() {
-    return joueurZaku;
-  }
+  public Joueur joueurZaku() {return joueurZaku;}
 
-  public Equipe equipeHumain(){return equipeHumain;}
+  public Equipe equipeHumain() {return equipeHumain;}
 
-  public Equipe equipeOrdinateur(){return equipeOrdinateur;}
+  public Equipe equipeOrdinateur() {return equipeOrdinateur;}
 
 
-  public Iterator<Joueur> itererDansLOrdre() {
-    return new IteratorInfini(this);
-  }
+  public Iterator<Joueur> itererDansLOrdre() {return new IteratorInfini(this);}
 
-  public List<Joueur> dansLOrdre() {
-    return List.of(joueurEsku, joueurDeux,joueurTrois,joueurZaku);
-  }
+  public List<Joueur> dansLOrdre() {return List.of(joueurEsku, joueurDeux, joueurTrois, joueurZaku);}
 
   private static class IteratorInfini implements Iterator<Joueur> {
     private final Opposants opposants;
@@ -76,14 +64,14 @@ public class Opposants {
     @Override
     public Joueur next() {
       Joueur next = suivant;
-      if (opposants.equipeOrdinateur.joueurA().equals(suivant)) {
-        suivant = opposants.joueurDeux;
-      } else if (opposants.joueurDeux.equals(suivant)) {
-        suivant = opposants.joueurTrois;
-      } else if (opposants.joueurTrois.equals(suivant)) {
-        suivant = opposants.joueurZaku;
-      } else if (opposants.joueurZaku.equals(suivant)) {
-        suivant = opposants.joueurEsku;
+      if (opposants.equipeHumain().joueurA().equals(suivant)) {
+        suivant = opposants.equipeOrdinateur().joueurA();
+      } else if (opposants.equipeOrdinateur().joueurA().equals(suivant)) {
+        suivant = opposants.equipeHumain().joueurB();
+      } else if (opposants.equipeHumain().joueurB().equals(suivant)) {
+        suivant = opposants.equipeOrdinateur().joueurB();
+      } else if (opposants.equipeOrdinateur().joueurB().equals(suivant)) {
+        suivant = opposants.equipeHumain().joueurA();
       }
 
       return next;

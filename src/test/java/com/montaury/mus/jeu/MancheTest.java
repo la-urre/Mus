@@ -41,6 +41,8 @@ class MancheTest {
   void devrait_terminer_la_manche_si_hordago_au_grand() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Hordago());
     when(interfaceJoueurDeux.faireChoixParmi(any())).thenReturn(new Kanta());
+    when(interfaceJoueurTrois.faireChoixParmi(any())).thenReturn(new Tira());
+    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Tira());
 
     Manche.Resultat resultat = manche.jouer(opposants);
 
@@ -51,22 +53,26 @@ class MancheTest {
   @Test
   void devrait_terminer_la_manche_si_un_joueur_a_40_points() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Imido(), new Gehiago(2));
+    when(interfaceJoueurDeux.faireChoixParmi(any())).thenReturn(new Imido(), new Gehiago(2));
+    when(interfaceJoueurTrois.faireChoixParmi(any())).thenReturn(new Imido(), new Gehiago(2));
     when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Gehiago(40), new Tira());
 
     Manche.Resultat resultat = manche.jouer(opposants);
 
-    assertThat(resultat.vainqueur()).isEqualTo(joueurEsku);
+    assertThat(resultat.vainqueur()).isEqualTo(joueurEsku.equipe());
     assertThat(resultat.pointsVaincu()).isZero();
   }
 
   @Test
   void devrait_changer_l_ordre_des_opposants_a_la_fin_du_tour() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Hordago());
+    when(interfaceJoueurDeux.faireChoixParmi(any())).thenReturn(new Kanta());
+    when(interfaceJoueurTrois.faireChoixParmi(any())).thenReturn(new Kanta());
     when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Kanta());
 
     manche.jouer(opposants);
 
-    assertThat(opposants.dansLOrdre()).containsExactly(joueurZaku, joueurEsku, joueurDeux, joueurTrois);
+    assertThat(opposants.dansLOrdre()).containsExactly(joueurDeux, joueurTrois, joueurZaku, joueurEsku);
   }
 
   private InterfaceJoueur interfaceJoueurEsku;

@@ -43,9 +43,11 @@ class TourTest {
   }
 
   @Test
-  void devrait_donner_tous_les_points_au_joueur_esku_si_le_joueur_deux_fait_tira() {
+  void devrait_donner_tous_les_points_au_joueur_esku_si_les_autres_joueurs_font_tira() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Imido());
     when(interfaceJoueurDeux.faireChoixParmi(any())).thenReturn(new Tira());
+    when(interfaceJoueurTrois.faireChoixParmi(any())).thenReturn(new Tira());
+    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Tira());
 
     tour.jouer(opposants, score);
 
