@@ -11,15 +11,15 @@ public class Opposants {
   private Equipe equipe2;
   
 
-  public Opposants(Equipe joueurEsku, Equipe joueurZaku) {
-    this.equipe1 = joueurEsku;
-    this.equipe2 = joueurZaku;
+  public Opposants(Equipe equipe1, Equipe equipe2) {
+    this.equipe1 = equipe1;
+    this.equipe2 = equipe2;
   }
   // permet de changer celui qui distribue et celui qui parle en premier
   public void tourner() {
-    Joueur Joueurtamp = equipe2.joueur1;
-    equipe2.joueur1 = equipe1.joueur1;
-    equipe1.joueur1 = Joueurtamp;
+    Equipe equipeTemp = equipe2;
+    equipe2 = equipe1;
+    equipe1 = equipeTemp;
   }
 
   public Joueur joueurEsku() {
