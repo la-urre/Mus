@@ -15,9 +15,12 @@ public class Paires extends Phase {
 
   @Override
   protected Joueur meilleurParmi(Opposants opposants) {
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurEsku = opposants.joueurEsku().main().getPaires();
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurZaku = opposants.joueurZaku().main().getPaires();
-    return pairesJoueurEsku.estMeilleureOuEgaleA(pairesJoueurZaku) ? opposants.joueurEsku() : opposants.joueurZaku();
+    Joueur meilleur = opposants.joueurEsku();
+    for (Joueur j:opposants.dansLOrdre()) {
+      if (j.main().getPaires().estMeilleureOuEgaleA(meilleur.main().getPaires())) meilleur = j;
+    }
+    if (opposants.joueurEsku().main().getPaires().estMeilleureOuEgaleA(meilleur.main().getPaires())) meilleur = opposants.joueurEsku();
+    return meilleur;
   }
 
   @Override

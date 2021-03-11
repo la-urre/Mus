@@ -29,7 +29,7 @@ class PetitTest {
   @Test
   void devrait_faire_gagner_le_joueur_zaku_s_il_a_la_plus_petite_carte() {
     Joueur joueurEsku = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.AS_BATON));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.DEUX_PIECE, Carte.DEUX_BATON, Carte.DEUX_BATON));
     Joueur ordi1 = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE));
     Joueur ordi2 = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));
 
@@ -43,10 +43,10 @@ class PetitTest {
 
   @Test
   void devrait_faire_gagner_le_joueur_qui_a_la_seconde_plus_petite_carte_si_la_premiere_est_egale() {
-    Joueur joueurEsku = unJoueurAvec(main(Carte.TROIS_BATON, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.AS_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.AS_BATON));
-    Joueur ordi1 = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE));
-    Joueur ordi2 = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));
+    Joueur joueurEsku = unJoueurAvec(main(Carte.ROI_BATON, Carte.ROI_PIECE, Carte.ROI_BATON, Carte.DEUX_BATON));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.ROI_BATON, Carte.ROI_PIECE, Carte.TROIS_BATON, Carte.DEUX_COUPE));
+    Joueur ordi1 = unJoueurAvec(main(Carte.ROI_BATON, Carte.ROI_PIECE, Carte.ROI_BATON, Carte.ROI_COUPE));
+    Joueur ordi2 = unJoueurAvec(main(Carte.ROI_BATON, Carte.ROI_PIECE, Carte.ROI_BATON, Carte.ROI_COUPE));
 
     Equipe equipe1 = new Equipe(joueurEsku,ordi1,"e1");
     Equipe equipe2 = new Equipe(joueurZaku,ordi2,"e2");

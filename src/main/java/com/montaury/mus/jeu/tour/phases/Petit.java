@@ -17,20 +17,30 @@ public class Petit extends Phase {
 
   @Override
   protected Joueur meilleurParmi(Opposants opposants) {
-    Joueur joueurEsku = opposants.joueurEsku();
-    Joueur joueurZaku = opposants.joueurZaku();
-    List<Carte> cartesJoueurEsku = joueurEsku.main().cartesDuPlusGrandAuPlusPetit();
-    List<Carte> cartesJoueurZaku = joueurZaku.main().cartesDuPlusGrandAuPlusPetit();
-
-    for (int i = Main.TAILLE - 1; i >= 0; i--) {
-      ValeurCarte.Comparaison compare = cartesJoueurEsku.get(i).comparerAvec(cartesJoueurZaku.get(i));
-      if (compare == PLUS_PETITE) {
-        return joueurEsku;
-      }
-      if (compare == PLUS_GRANDE) {
-        return joueurZaku;
+    Joueur meilleur = opposants.joueurEsku();
+    for (Joueur j:opposants.dansLOrdre()) {
+      for (int i = Main.TAILLE - 1; i >= 0; i--) {
+        ValeurCarte.Comparaison compare = meilleur.main().cartesDuPlusGrandAuPlusPetit().get(i).comparerAvec(j.main().cartesDuPlusGrandAuPlusPetit().get(i));
+        if (compare == PLUS_PETITE) {
+          meilleur = j;
+          break;
+        }
+        if (compare == PLUS_GRANDE) {
+          continue;
+        }
       }
     }
-    return joueurEsku;
+    for (int i = Main.TAILLE - 1; i >= 0; i--) {
+      ValeurCarte.Comparaison compare = opposants.joueurEsku().main().cartesDuPlusGrandAuPlusPetit().get(i).comparerAvec(meilleur.main().cartesDuPlusGrandAuPlusPetit().get(i));
+      if (compare == PLUS_PETITE) {
+        return opposants.joueurEsku();
+      }
+      if (compare == PLUS_GRANDE) {
+        return meilleur;
+      }
+    }
+
+    return meilleur;
+
   }
 }

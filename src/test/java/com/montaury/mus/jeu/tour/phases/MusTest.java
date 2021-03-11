@@ -23,10 +23,14 @@ class MusTest {
     mus = new Mus(paquetEntierCroissant(), defausse, new AffichageConsoleEvenementsDeJeu(joueurEsku));
     interfaceJoueurEsku = mock(InterfaceJoueur.class);
     interfaceJoueurZaku = mock(InterfaceJoueur.class);
+    interfaceOrdi1 = mock(InterfaceJoueur.class);
+    interfaceOrdi2 = mock(InterfaceJoueur.class);
     joueurEsku = new Joueur("J1", interfaceJoueurEsku);
     joueurZaku = new Joueur("J2", interfaceJoueurZaku);
-    equipe1 = new Equipe(joueurEsku,Joueur.ordinateur("ordi"),"e1");
-    equipe2 = new Equipe(Joueur.ordinateur("ordi2"),joueurZaku,"e2");
+    joueurOrdi1 =new Joueur("J3", interfaceOrdi1);
+    joueurOrdi2 =new Joueur("J4", interfaceOrdi2);
+    equipe1 = new Equipe(joueurEsku,joueurOrdi1,"e1");
+    equipe2 = new Equipe(joueurOrdi2,joueurZaku,"e2");
     opposants = new Opposants(equipe1,equipe2);
   }
   @Test
@@ -47,7 +51,9 @@ class MusTest {
     mus.jouer(opposants);
 
     assertThat(joueurEsku.main().cartes()).containsExactly(Carte.AS_BATON, Carte.AS_COUPE, Carte.AS_EPEE, Carte.AS_PIECE);
-    assertThat(joueurZaku.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_COUPE, Carte.DEUX_EPEE, Carte.DEUX_PIECE);
+    assertThat(joueurOrdi1.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_COUPE, Carte.DEUX_EPEE, Carte.DEUX_PIECE);
+    assertThat(joueurOrdi2.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_COUPE, Carte.TROIS_EPEE, Carte.TROIS_PIECE);
+    assertThat(joueurZaku.main().cartes()).containsExactly(Carte.QUATRE_BATON, Carte.QUATRE_COUPE, Carte.QUATRE_EPEE, Carte.QUATRE_PIECE);
   }
 
   @Test
@@ -73,46 +79,66 @@ class MusTest {
   void devrait_demander_les_cartes_a_jeter_aux_joueurs_s_ils_vont_mus() {
     when(interfaceJoueurEsku.veutAllerMus()).thenReturn(true, false);
     when(interfaceJoueurZaku.veutAllerMus()).thenReturn(true);
-
+    when(interfaceOrdi1.veutAllerMus()).thenReturn(true);
+    when(interfaceOrdi2.veutAllerMus()).thenReturn(true);
     mus.jouer(opposants);
 
     verify(interfaceJoueurEsku, times(1)).cartesAJeter();
     verify(interfaceJoueurZaku, times(1)).cartesAJeter();
+    verify(interfaceOrdi1, times(1)).cartesAJeter();
+    verify(interfaceOrdi2, times(1)).cartesAJeter();
   }
 
   @Test
   void devrait_defausser_les_cartes_a_jeter_si_les_joueurs_vont_mus() {
     when(interfaceJoueurEsku.veutAllerMus()).thenReturn(true, false);
     when(interfaceJoueurEsku.cartesAJeter()).thenReturn(List.of(Carte.AS_COUPE));
+    when(interfaceOrdi1.veutAllerMus()).thenReturn(true);
+    when(interfaceOrdi1.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
+    when(interfaceOrdi2.veutAllerMus()).thenReturn(true);
+    when(interfaceOrdi2.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
     when(interfaceJoueurZaku.veutAllerMus()).thenReturn(true);
     when(interfaceJoueurZaku.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
 
     mus.jouer(opposants);
 
-    assertThat(defausse.reprendreCartes()).containsExactly(Carte.AS_COUPE, Carte.DEUX_COUPE);
+    assertThat(defausse.reprendreCartes()).containsExactly(Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.DEUX_COUPE, Carte.DEUX_COUPE);
   }
 
   @Test
   void devrait_distribuer_des_cartes_pour_remplacer_les_cartes_jetees_si_les_joueurs_vont_mus() {
     when(interfaceJoueurEsku.veutAllerMus()).thenReturn(true, false);
     when(interfaceJoueurEsku.cartesAJeter()).thenReturn(List.of(Carte.AS_COUPE));
+    when(interfaceOrdi1.veutAllerMus()).thenReturn(true);
+    when(interfaceOrdi1.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
+    when(interfaceOrdi2.veutAllerMus()).thenReturn(true);
+    when(interfaceOrdi2.cartesAJeter()).thenReturn(List.of(Carte.TROIS_COUPE));
     when(interfaceJoueurZaku.veutAllerMus()).thenReturn(true);
-    when(interfaceJoueurZaku.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
+    when(interfaceJoueurZaku.cartesAJeter()).thenReturn(List.of(Carte.QUATRE_COUPE));
+
 
     mus.jouer(opposants);
 
-    assertThat(joueurEsku.main().cartes()).containsExactly(Carte.AS_BATON, Carte.AS_EPEE, Carte.AS_PIECE, Carte.TROIS_BATON);
-    assertThat(joueurZaku.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_EPEE, Carte.DEUX_PIECE, Carte.TROIS_COUPE);
+    assertThat(joueurEsku.main().cartes()).containsExactly(Carte.AS_BATON, Carte.AS_EPEE, Carte.AS_PIECE, Carte.CINQ_BATON);
+    assertThat(joueurOrdi1.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_EPEE, Carte.DEUX_PIECE, Carte.CINQ_COUPE);
+    assertThat(joueurOrdi2.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_EPEE, Carte.TROIS_PIECE, Carte.CINQ_EPEE);
+    assertThat(joueurZaku.main().cartes()).containsExactly(Carte.QUATRE_BATON, Carte.QUATRE_EPEE, Carte.QUATRE_PIECE, Carte.CINQ_PIECE);
   }
+
 
   private Mus mus;
   private InterfaceJoueur interfaceJoueurEsku;
   private InterfaceJoueur interfaceJoueurZaku;
   private InterfaceJoueurHumain monInterfaceHumain;
+  private InterfaceJoueur interfaceOrdi1;
+  private InterfaceJoueur interfaceOrdi2;
   private Joueur joueurEsku;
   private Joueur joueurZaku;
+  private Joueur joueurOrdi1;
+  private Joueur joueurOrdi2;
   private Equipe equipe1;
   private Equipe equipe2;
+
   private Opposants opposants;
   private Defausse defausse;
 }

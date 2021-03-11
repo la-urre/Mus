@@ -13,13 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FauxJeuTest {
   @Test
   void ne_doit_pas_se_derouler_si_un_seul_des_joueurs_a_le_jeu() {
-    Joueur joueurEsku = unJoueurAvec(main(Carte.AS_BATON, Carte.AS_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.CAVALIER_PIECE, Carte.ROI_PIECE, Carte.AS_PIECE));
-    Joueur ordi1 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
-    Joueur ordi2 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
+    Joueur joueurEsku = unJoueurAvec(main(Carte.ROI_BATON, Carte.ROI_PIECE, Carte.ROI_BATON, Carte.ROI_BATON));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.ROI_BATON,Carte.ROI_BATON,Carte.ROI_BATON,Carte.ROI_BATON));
+    Joueur ordi1 = unJoueurAvec(main(Carte.ROI_BATON,Carte.ROI_BATON,Carte.ROI_BATON,Carte.ROI_BATON));
+    Joueur ordi2 = unJoueurAvec(main(Carte.AS_BATON,Carte.AS_BATON,Carte.AS_BATON,Carte.AS_BATON));
 
     Equipe equipe1 = new Equipe(joueurEsku,ordi1,"e1");
-    Equipe equipe2 = new Equipe(joueurZaku,ordi2,"e2");
+    Equipe equipe2 = new Equipe(ordi2,joueurZaku,"e2");
 
     Opposants opposants = new Opposants(
             equipe1,equipe2
@@ -64,15 +64,15 @@ class FauxJeuTest {
     );
     Joueur vainqueur = new FauxJeu().meilleurParmi(opposants);
 
-    assertThat(vainqueur).isEqualTo(joueurEsku);
+    assertThat(vainqueur).isEqualTo(joueurZaku);
   }
 
   @Test
   void devrait_faire_gagner_le_joueur_esku_en_cas_d_egalite() {
     Joueur joueurEsku = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.ROI_COUPE));
-    Joueur ordi1 = unJoueurAvec(main(Carte.AS_BATON, Carte.SIX_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
-    Joueur ordi2 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.SIX_BATON, Carte.SIX_COUPE));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
+    Joueur ordi1 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
+    Joueur ordi2 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
 
     Equipe equipe1 = new Equipe(joueurEsku,ordi1,"e1");
     Equipe equipe2 = new Equipe(joueurZaku,ordi2,"e2");

@@ -10,6 +10,7 @@ public class Opposants {
   private Joueur joueurZaku;
 
   private List<Equipe> equipes;
+
   private LinkedList<Joueur> joueursDansLordre;
 
   public Opposants(Equipe equipe1,Equipe equipe2) {

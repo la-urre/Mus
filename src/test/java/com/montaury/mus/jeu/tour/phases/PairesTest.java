@@ -71,9 +71,9 @@ class PairesTest {
   @Test
   void devrait_faire_gagner_le_joueur_ayant_la_meilleure_paire() {
     Joueur joueurEsku = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.DEUX_BATON, Carte.SEPT_BATON, Carte.AS_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.TROIS_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));
-    Joueur ordi1 = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE));
-    Joueur ordi2 = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.TROIS_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.CAVALIER_PIECE));
+    Joueur ordi1 = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SEPT_COUPE));
+    Joueur ordi2 = unJoueurAvec(main(Carte.TROIS_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));
 
     Equipe equipe1 = new Equipe(joueurEsku,ordi1,"e1");
     Equipe equipe2 = new Equipe(joueurZaku,ordi2,"e2");
