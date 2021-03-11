@@ -17,7 +17,7 @@ public class Equipe  {
     public Equipe (Joueur joueur, String nomEquipe, boolean partieAQuatre, String nomEquipier) {
 
         this.nom = nomEquipe;
-        joueurs = new LinkedList<>();
+        joueurs = new ArrayList<>();
 
         this.joueurs.add(joueur);
         joueur.setEquipe(this);
@@ -27,6 +27,10 @@ public class Equipe  {
             this.joueurs.add(joueurOrdi);
             joueurOrdi.setEquipe(this);
         }
+    }
+
+    public String nom() {
+        return this.nom;
     }
 
     public List<Joueur> getJoueurs() { return this.joueurs; }

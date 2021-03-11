@@ -8,13 +8,21 @@ import java.util.LinkedList;
 public class Opposants {
   private Joueur joueurEsku;
   private Joueur joueurZaku;
-  private ArrayList<Joueur> listeJoueursJeu;
+  private LinkedList<Joueur> listeJoueursJeu;
+  private ArrayList<Equipe> equipes;
 
   public Opposants(Equipe equipeEsku, Equipe equipeZaku) {
 
-    listeJoueursJeu = new ArrayList<>();
+    equipes = new ArrayList<>();
+
+    equipes.add(equipeEsku);
+    equipes.add(equipeZaku);
+
+    listeJoueursJeu = new LinkedList<>();
 
     this.joueurEsku = equipeEsku.getJoueurs().get(0);
+    this.joueurZaku = equipeZaku.getJoueurs().get(1);
+
 
     for (int i=0 ; i < equipeEsku.getJoueurs().size() ; i++ )
     {
@@ -25,7 +33,13 @@ public class Opposants {
   }
 
   public void tourner() {
-    joueurEsku = listeJoueursJeu.get((listeJoueursJeu.indexOf(this.joueurEsku)+1)%4);
+    Joueur echange = listeJoueursJeu.removeFirst();
+    listeJoueursJeu.addLast(echange);
+
+    defineRoles();
+    /*joueurEsku = listeJoueursJeu.get((listeJoueursJeu.indexOf(this.joueurEsku)+1)%4);
+    joueurZaku = listeJoueursJeu.get((listeJoueursJeu.indexOf(this.joueurZaku)+1)%4);
+  */
   }
 
   public Joueur joueurEsku() {
@@ -65,5 +79,15 @@ public class Opposants {
       suivant = opposants.listeJoueursJeu.get(indexSuivant);
       return next;
     }
+  }
+
+  public List<Equipe> getEquipes(){
+    return equipes;
+  }
+
+  public void defineRoles()
+  {
+    joueurEsku = listeJoueursJeu.getFirst();
+    joueurZaku = listeJoueursJeu.getLast();
   }
 }

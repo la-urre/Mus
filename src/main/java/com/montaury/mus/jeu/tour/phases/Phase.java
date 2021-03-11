@@ -41,12 +41,12 @@ public abstract class Phase {
   private Resultat conclure(DialogueTermine dialogue, Manche.Score score, Opposants opposants) {
     if (dialogue.estConcluPar(TIRA)) {
       Joueur joueurEmportantLaMise = dialogue.avantDernierJoueur();
-      score.scorer(joueurEmportantLaMise, dialogue.pointsEngages());
+      score.scorer(joueurEmportantLaMise.getEquipe(), dialogue.pointsEngages());
       return Resultat.termine(joueurEmportantLaMise, pointsBonus(joueurEmportantLaMise));
     }
     if (dialogue.estConcluPar(KANTA)) {
       Joueur vainqueur = meilleurParmi(opposants);
-      score.remporterManche(vainqueur);
+      score.remporterManche(vainqueur.getEquipe());
       return Resultat.termine(vainqueur, 0);
     }
     Joueur vainqueurPhase = meilleurParmi(opposants);
