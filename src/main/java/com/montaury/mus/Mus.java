@@ -13,9 +13,9 @@ public class Mus {
     String nomJoueur = new Scanner(System.in).next();
     Joueur humain = Joueur.humain(nomJoueur);
 
-    Equipe equipeHumain = new Equipe(humain, "equipe humain", true);
+    Equipe equipeHumain = new Equipe(humain, "equipe humain", true, "OrdiEquipier");
 
-    Equipe equipeOrdis = new Equipe(Joueur.ordinateur(), "equipe ordi", true);
+    Equipe equipeOrdis = new Equipe(Joueur.ordinateur("Ordi1"), "equipe ordi", true, "Ordi2");
 
     Partie partie = new Partie(new AffichageConsoleEvenementsDeJeu(humain));
 

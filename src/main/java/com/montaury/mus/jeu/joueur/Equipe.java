@@ -13,7 +13,8 @@ public class Equipe  {
     private boolean peutParler = true;
     private int score = 0;
 
-    public Equipe (Joueur joueur, String nomEquipe, boolean partieAQuatre) {
+    // Crée une équipe à 1 ou 2 joueurs (selon partieAQuatre
+    public Equipe (Joueur joueur, String nomEquipe, boolean partieAQuatre, String nomEquipier) {
 
         this.nom = nomEquipe;
         joueurs = new LinkedList<>();
@@ -22,7 +23,7 @@ public class Equipe  {
         joueur.setEquipe(this);
 
         if (partieAQuatre) {
-            Joueur joueurOrdi = Joueur.ordinateur();
+            Joueur joueurOrdi = Joueur.ordinateur(nomEquipier);
             this.joueurs.add(joueurOrdi);
             joueurOrdi.setEquipe(this);
         }
