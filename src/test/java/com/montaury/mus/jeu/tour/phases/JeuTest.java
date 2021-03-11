@@ -107,7 +107,7 @@ class JeuTest {
   @Test
   void devrait_faire_gagner_le_joueur_ayant_36_par_rapport_a_33() {
     Joueur joueurEsku = unJoueurAvec(main(Carte.SEPT_BATON, Carte.SIX_BATON, Carte.VALET_BATON, Carte.VALET_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.CAVALIER_PIECE, Carte.ROI_BATON, Carte.TROIS_BATON));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.CAVALIER_PIECE, Carte.ROI_BATON, Carte.SIX_BATON));
     Joueur ordi1 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
     Joueur ordi2 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
 
@@ -120,16 +120,15 @@ class JeuTest {
 
     Joueur vainqueur = new Jeu().meilleurParmi(opposants);
 
-    assertThat(vainqueur).isEqualTo(joueurEsku);
+    assertThat(vainqueur).isEqualTo(joueurZaku);
   }
 
   @Test
   void devrait_faire_gagner_le_joueur_esku_en_cas_d_egalite() {
-    Joueur joueurEsku = unJoueurAvec(main(Carte.VALET_EPEE, Carte.AS_BATON, Carte.VALET_BATON, Carte.VALET_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.CAVALIER_PIECE, Carte.ROI_BATON, Carte.AS_PIECE));
-
+    Joueur joueurEsku = unJoueurAvec(main(Carte.ROI_EPEE, Carte.DEUX_BATON, Carte.VALET_BATON, Carte.VALET_COUPE));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.VALET_PIECE, Carte.VALET_BATON, Carte.DEUX_PIECE));
     Joueur ordi1 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
-    Joueur ordi2 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
+    Joueur ordi2 = unJoueurAvec(main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
 
     Equipe equipe1 = new Equipe(joueurEsku,ordi1,"e1");
     Equipe equipe2 = new Equipe(joueurZaku,ordi2,"e2");
