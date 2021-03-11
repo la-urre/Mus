@@ -61,11 +61,17 @@ public abstract class Phase {
   }
 
   public final boolean peutSeDerouler(Opposants opposants) {
-
+    int compteur = 0;
     for (Joueur j:opposants.dansLOrdre()) {
-      if(!peutParticiper(j))return false;
+      if(peutParticiper(j)) {
+        compteur++;
+      }
     }
-    return true;
+    if (compteur>=2) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   protected boolean peutParticiper(Joueur joueur) {

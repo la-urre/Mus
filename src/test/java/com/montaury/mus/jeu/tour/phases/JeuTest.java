@@ -49,9 +49,9 @@ class JeuTest {
   }
 
   @Test
-  void devrait_se_derouler_si_les_deux_joueurs_ont_le_jeu() {
+  void devrait_se_derouler_si_deux_joueurs_ont_le_jeu() {
     Joueur joueurEsku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.CAVALIER_PIECE, Carte.ROI_BATON, Carte.AS_PIECE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.CAVALIER_PIECE, Carte.ROI_BATON, Carte.AS_PIECE));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.CAVALIER_PIECE, Carte.VALET_COUPE, Carte.ROI_PIECE));
     Joueur ordi1 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
     Joueur ordi2 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
 
