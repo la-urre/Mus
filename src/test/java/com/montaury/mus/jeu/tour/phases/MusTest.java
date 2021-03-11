@@ -25,7 +25,9 @@ class MusTest {
     interfaceJoueurZaku = mock(InterfaceJoueur.class);
     joueurEsku = new Joueur("J1", interfaceJoueurEsku);
     joueurZaku = new Joueur("J2", interfaceJoueurZaku);
-    opposants = new Opposants(joueurEsku, joueurZaku);
+    equipe1 = new Equipe(joueurEsku,Joueur.ordinateur("ordi"),"e1");
+    equipe2 = new Equipe(joueurZaku,Joueur.ordinateur("ordi2"),"e2");
+    opposants = new Opposants(equipe1,equipe2);
   }
   @Test
   void devrait_renvoyer_faux_car_le_joueur_fait_une_mauvaise_saisie() {
@@ -34,7 +36,7 @@ class MusTest {
 
     String [] saisieUtilisateur = {"-","d","m","40",",20","1,50","60,1"};
 
-    for(int i=0; i < saisieUtilisateur.length ; i++) assertThat(monInterfaceHumain.cartesAJeterCorrectes(saisieUtilisateur[i])).isEqualTo(false);
+    for (String s : saisieUtilisateur) assertThat(monInterfaceHumain.cartesAJeterCorrectes(s)).isEqualTo(false);
 
   }
 
@@ -109,6 +111,8 @@ class MusTest {
   private InterfaceJoueurHumain monInterfaceHumain;
   private Joueur joueurEsku;
   private Joueur joueurZaku;
+  private Equipe equipe1;
+  private Equipe equipe2;
   private Opposants opposants;
   private Defausse defausse;
 }

@@ -1,21 +1,35 @@
 package com.montaury.mus.jeu.joueur;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Opposants {
   private Joueur joueurEsku;
   private Joueur joueurZaku;
 
-  public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
-    this.joueurEsku = joueurEsku;
-    this.joueurZaku = joueurZaku;
+  private List<Equipe> equipes;
+  private LinkedList<Joueur> joueursDansLordre;
+
+  public Opposants(Equipe equipe1,Equipe equipe2) {
+    equipes = new ArrayList<Equipe>();
+    equipes.add(equipe1);
+    equipes.add(equipe2);
+
+    joueursDansLordre = new LinkedList<Joueur>();
+    joueursDansLordre.addAll(equipe1.getJoueurs());
+    joueursDansLordre.addAll(equipe2.getJoueurs());
+
+    definirRoles();
+
   }
 
+  //A modifier
   public void tourner() {
-    Joueur tmp = joueurEsku;
-    joueurEsku = joueurZaku;
-    joueurZaku = tmp;
+    Joueur jouerTemp = joueursDansLordre.removeLast();
+    joueursDansLordre.addFirst(jouerTemp);
+    definirRoles();
   }
 
   public Joueur joueurEsku() {
@@ -31,7 +45,15 @@ public class Opposants {
   }
 
   public List<Joueur> dansLOrdre() {
-    return List.of(joueurEsku, joueurZaku);
+
+    return joueursDansLordre;
+  }
+  public List<Equipe> equipes(){
+    return equipes;
+  }
+  private void definirRoles(){
+    joueurEsku = joueursDansLordre.getFirst();
+    joueurZaku = joueursDansLordre.getLast();
   }
 
   private static class IteratorInfini implements Iterator<Joueur> {

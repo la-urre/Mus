@@ -8,10 +8,11 @@ public class Joueur {
     return new Joueur(nom, new InterfaceJoueurHumain());
   }
 
-  public static Joueur ordinateur() {
-    return new Joueur("Ordinateur", new InterfaceJoueurOrdinateur());
+  public static Joueur ordinateur(String nom) {
+    return new Joueur(nom, new InterfaceJoueurOrdinateur());
   }
 
+  private Equipe equipe;
   private final String nom;
   public final InterfaceJoueur interfaceJoueur;
   private final Main main = Main.vide();
@@ -33,4 +34,10 @@ public class Joueur {
     main.ajouter(cartes);
     interfaceJoueur.nouvelleMain(main);
   }
+  public Equipe equipe(){
+    return equipe;
+  };
+  public void equipe(Equipe equipe){
+    this.equipe = equipe;
+  };
 }
