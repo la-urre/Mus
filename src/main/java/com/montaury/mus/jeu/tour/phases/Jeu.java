@@ -2,6 +2,8 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Opposants;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Jeu extends Phase {
@@ -23,9 +25,19 @@ public class Jeu extends Phase {
 
   @Override
   protected Joueur meilleurParmi(Opposants opposants) {
-    return rangDuJeu(opposants.joueurEsku()) <= rangDuJeu(opposants.joueurZaku()) ?
-      opposants.joueurEsku() :
-      opposants.joueurZaku();
+    int max=0;
+    Joueur meilleur = opposants.dansLOrdre().get(0);
+
+    for (Joueur j:opposants.dansLOrdre()) {
+      if (j.main().pointsPourJeu() == 31) {
+        meilleur = j;
+        break;
+      } else if (j.main().pointsPourJeu() > max) {
+        max = j.main().pointsPourJeu();
+        meilleur = j;
+      }
+    }
+    return meilleur;
   }
 
   private int rangDuJeu(Joueur joueur) {
