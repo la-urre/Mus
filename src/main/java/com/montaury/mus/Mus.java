@@ -14,7 +14,7 @@ public class Mus {
     String nomJoueur = new Scanner(System.in).next();
 
     Joueur humain = Joueur.humain(nomJoueur);
-
+    System.exit (0);
     Partie partie = new Partie(new AffichageConsoleEvenementsDeJeu(humain));
 
     Partie.Resultat resultat = partie.jouer(new Opposants(humain, Joueur.ordinateur("Bot Albert") , Joueur.ordinateur("Méchant"), Joueur.ordinateur("Pas Gentil")));

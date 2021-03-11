@@ -79,6 +79,7 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
     println("Vainqueur: " + resultat.vainqueur());
   }
 
+  public void quitter(){System.exit (0);}
   private void println(String string) {
     System.out.println(string);
   }
