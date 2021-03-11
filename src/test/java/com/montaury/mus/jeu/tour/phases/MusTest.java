@@ -26,7 +26,7 @@ class MusTest {
     joueurEsku = new Joueur("J1", interfaceJoueurEsku);
     joueurZaku = new Joueur("J2", interfaceJoueurZaku);
     equipe1 = new Equipe(joueurEsku,Joueur.ordinateur("ordi"),"e1");
-    equipe2 = new Equipe(joueurZaku,Joueur.ordinateur("ordi2"),"e2");
+    equipe2 = new Equipe(Joueur.ordinateur("ordi2"),joueurZaku,"e2");
     opposants = new Opposants(equipe1,equipe2);
   }
   @Test

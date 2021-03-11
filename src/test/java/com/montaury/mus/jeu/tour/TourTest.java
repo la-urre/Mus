@@ -76,7 +76,7 @@ class TourTest {
 
     tour.jouer(opposants, score);
 
-    assertThat(score.vainqueur()).contains(equipe1);
+    assertThat(score.vainqueur()).contains(equipe2);
     assertThat(score.scoreParEquipe()).containsEntry(equipe1, 0);
     assertThat(score.scoreParEquipe()).containsEntry(equipe2, 40);
   }
@@ -112,7 +112,8 @@ class TourTest {
     when(interfaceOrdi2.faireChoixParmi(any())).thenReturn(new Idoki());
     when(interfaceOrdi1.faireChoixParmi(any())).thenReturn(new Idoki());
 
-    Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.AS_BATON, Carte.DEUX_BATON, Carte.TROIS_BATON, Carte.QUATRE_BATON, Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE), new Defausse());
+    Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.AS_BATON, Carte.DEUX_BATON, Carte.TROIS_BATON, Carte.QUATRE_BATON, Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE
+                                                    ,Carte.AS_BATON, Carte.DEUX_BATON, Carte.TROIS_BATON, Carte.QUATRE_BATON, Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE), new Defausse());
 
     tour.jouer(opposants, score);
 

@@ -6,6 +6,8 @@ import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
 import com.montaury.mus.jeu.tour.phases.dialogue.DialogueTermine;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -55,9 +57,13 @@ public abstract class Phase {
   }
 
   public List<Joueur> participantsParmi(Opposants opposants) {
-    return opposants.dansLOrdre().stream()
-      .filter(this::peutParticiper)
-      .collect(Collectors.toList());
+    List<Joueur> participants = new ArrayList<>();
+    for (Joueur j:opposants.dansLOrdre()) {
+      if (peutParticiper(j)) {
+        participants.add(j);
+      }
+    }
+    return participants;
   }
 
   public final boolean peutSeDerouler(Opposants opposants) {
