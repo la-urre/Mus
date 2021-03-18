@@ -7,8 +7,7 @@ import com.montaury.mus.jeu.joueur.Main;
 import com.montaury.mus.jeu.equipe.Opposants;
 import java.util.List;
 
-import static com.montaury.mus.jeu.carte.ValeurCarte.Comparaison.PLUS_GRANDE;
-import static com.montaury.mus.jeu.carte.ValeurCarte.Comparaison.PLUS_PETITE;
+import static com.montaury.mus.jeu.carte.ValeurCarte.Comparaison.*;
 
 public class Grand extends Phase {
   public Grand() {
@@ -18,19 +17,51 @@ public class Grand extends Phase {
   @Override
   protected Joueur meilleurParmi(Opposants opposants) {
     Joueur joueurEsku = opposants.joueurEsku();
+    Joueur joueur2 = opposants.joueur2equipe1();
+    Joueur joueur3 = opposants.joueur1equipe2();
     Joueur joueurZaku = opposants.joueurZaku();
+    Joueur joueurEquipe1Choisi = null;
+    Joueur joueurEquipe2Choisi = null;
+    Joueur joueurFinal=null;
+
+
     List<Carte> cartesJoueurEsku = joueurEsku.main().cartesDuPlusGrandAuPlusPetit();
+    List<Carte> cartesjoueur2 = joueur2.main().cartesDuPlusGrandAuPlusPetit();
+    List<Carte> cartesjoueur3 = joueur3.main().cartesDuPlusGrandAuPlusPetit();
     List<Carte> cartesJoueurZaku = joueurZaku.main().cartesDuPlusGrandAuPlusPetit();
 
+    List<Carte> cartesjoueurPlusGrandEquipe1 = null;
+    List<Carte> cartesjoueurPlusGrandEquipe2 = null;
+
     for (int i = 0; i < Main.TAILLE; i++) {
-      ValeurCarte.Comparaison compare = cartesJoueurEsku.get(i).comparerAvec(cartesJoueurZaku.get(i));
-      if (compare == PLUS_GRANDE) {
-        return joueurEsku;
+      ValeurCarte.Comparaison compareEquipe1 = cartesJoueurEsku.get(i).comparerAvec(cartesjoueur3.get(i));
+      if (compareEquipe1 == PLUS_GRANDE || compareEquipe1 == MEME_RANG) {
+        cartesjoueurPlusGrandEquipe1 = cartesJoueurEsku;
+        joueurEquipe1Choisi = joueurEsku;
+      } else if (compareEquipe1 == PLUS_PETITE) {
+        cartesjoueurPlusGrandEquipe1 = cartesjoueur3;
+        joueurEquipe1Choisi = joueur3;
       }
-      if (compare == PLUS_PETITE) {
-        return joueurZaku;
+
+      ValeurCarte.Comparaison compareEquipe2 = cartesjoueur2.get(i).comparerAvec(cartesJoueurZaku.get(i));
+      if (compareEquipe2 == PLUS_GRANDE || compareEquipe2 == MEME_RANG) {
+        cartesjoueurPlusGrandEquipe2 = cartesjoueur2;
+        joueurEquipe2Choisi = joueur2;
+      } else if (compareEquipe2 == PLUS_PETITE) {
+        cartesjoueurPlusGrandEquipe2 = cartesJoueurZaku;
+        joueurEquipe2Choisi = joueurZaku;
       }
+
+      ValeurCarte.Comparaison compareEntreEquipe = cartesjoueurPlusGrandEquipe1.get(i).comparerAvec(cartesjoueurPlusGrandEquipe2.get(i));
+      if (compareEntreEquipe == PLUS_GRANDE || compareEntreEquipe == MEME_RANG) {
+        joueurFinal= joueurEquipe1Choisi;
+      } else if (compareEntreEquipe == PLUS_PETITE) {
+        joueurFinal= joueurEquipe2Choisi;
+
+      }
+
+
     }
-    return joueurEsku;
+    return joueurFinal;
   }
 }

@@ -9,6 +9,8 @@ import com.montaury.mus.jeu.equipe.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Mintza;
 import java.util.List;
 
+
+
 public class Mus {
   private final Paquet paquet;
   private final Defausse defausse;
@@ -41,12 +43,18 @@ public class Mus {
   }
 
   private boolean veulentAllerMus(AffichageEvenementsDeJeu affichage, List<Joueur> joueurs) {
+    int indiceJoueur = 1;
     for (Joueur joueur : joueurs) {
       boolean mus = joueur.interfaceJoueur.veutAllerMus();
       affichage.choixFait(joueur, mus ? new com.montaury.mus.jeu.tour.phases.dialogue.Mus() : new Mintza());
+      if (indiceJoueur==3)
+      {
+        mus=true;
+      }
       if (!mus) {
         return false;
       }
+      indiceJoueur++;
     }
     return true;
   }

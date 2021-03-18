@@ -25,9 +25,14 @@ public class Opposants {
   public Joueur joueurEsku() {
     return equipe1.joueur1;
   }
-
-  public Joueur joueurZaku() {
+  public Joueur joueur2equipe1() {
+    return equipe1.joueur2;
+  }
+  public Joueur joueur1equipe2() {
     return equipe2.joueur1;
+  }
+  public Joueur joueurZaku() {
+    return equipe2.joueur2;
   }
 
   public Iterator<Joueur> itererDansLOrdre() { //permet de passer d'un Joueur a l autre pour avoir ses données
