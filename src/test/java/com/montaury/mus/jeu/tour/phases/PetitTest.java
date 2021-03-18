@@ -29,7 +29,7 @@ class PetitTest {
   @Test
   void devrait_faire_gagner_le_joueur_zaku_s_il_a_la_plus_petite_carte() {
     Joueur joueurEsku = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.DEUX_PIECE, Carte.DEUX_BATON, Carte.DEUX_BATON));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.DEUX_PIECE, Carte.DEUX_BATON, Carte.AS_BATON));
     Joueur ordi1 = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE));
     Joueur ordi2 = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));
 
