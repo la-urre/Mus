@@ -4,6 +4,7 @@ import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.carte.Defausse;
 import com.montaury.mus.jeu.carte.Paquet;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Opposants;
 import com.montaury.mus.jeu.tour.phases.FauxJeu;
 import com.montaury.mus.jeu.tour.phases.Grand;
@@ -44,6 +45,7 @@ public class Tour {
       Phase.Resultat resultat = phases.next().jouer(affichage, opposants, score);
       resultats.ajouter(resultat);
     } while (phases.hasNext() && score.vainqueur().isEmpty());
+
     resultats.attribuerPointsRestants(score);
   }
 

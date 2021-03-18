@@ -17,11 +17,12 @@ public class Opposants {
     equipes = new ArrayList<Equipe>();
     equipes.add(equipe1);
     equipes.add(equipe2);
-
     joueursDansLordre = new LinkedList<Joueur>();
-    joueursDansLordre.addAll(equipe1.getJoueurs());
-    joueursDansLordre.addAll(equipe2.getJoueurs());
 
+    for(int i=0;i<equipe1.getJoueurs().size();i++){
+      joueursDansLordre.add(equipe1.getJoueurs().get(i));
+      joueursDansLordre.add(equipe2.getJoueurs().get(i));
+    }
     definirRoles();
 
   }

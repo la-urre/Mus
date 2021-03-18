@@ -51,8 +51,8 @@ class MusTest {
     mus.jouer(opposants);
 
     assertThat(joueurEsku.main().cartes()).containsExactly(Carte.AS_BATON, Carte.AS_COUPE, Carte.AS_EPEE, Carte.AS_PIECE);
-    assertThat(joueurOrdi1.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_COUPE, Carte.DEUX_EPEE, Carte.DEUX_PIECE);
-    assertThat(joueurOrdi2.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_COUPE, Carte.TROIS_EPEE, Carte.TROIS_PIECE);
+    assertThat(joueurOrdi2.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_COUPE, Carte.DEUX_EPEE, Carte.DEUX_PIECE);
+    assertThat(joueurOrdi1.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_COUPE, Carte.TROIS_EPEE, Carte.TROIS_PIECE);
     assertThat(joueurZaku.main().cartes()).containsExactly(Carte.QUATRE_BATON, Carte.QUATRE_COUPE, Carte.QUATRE_EPEE, Carte.QUATRE_PIECE);
   }
 
@@ -110,9 +110,9 @@ class MusTest {
     when(interfaceJoueurEsku.veutAllerMus()).thenReturn(true, false);
     when(interfaceJoueurEsku.cartesAJeter()).thenReturn(List.of(Carte.AS_COUPE));
     when(interfaceOrdi1.veutAllerMus()).thenReturn(true);
-    when(interfaceOrdi1.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
+    when(interfaceOrdi1.cartesAJeter()).thenReturn(List.of(Carte.TROIS_COUPE));
     when(interfaceOrdi2.veutAllerMus()).thenReturn(true);
-    when(interfaceOrdi2.cartesAJeter()).thenReturn(List.of(Carte.TROIS_COUPE));
+    when(interfaceOrdi2.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
     when(interfaceJoueurZaku.veutAllerMus()).thenReturn(true);
     when(interfaceJoueurZaku.cartesAJeter()).thenReturn(List.of(Carte.QUATRE_COUPE));
 
@@ -120,8 +120,8 @@ class MusTest {
     mus.jouer(opposants);
 
     assertThat(joueurEsku.main().cartes()).containsExactly(Carte.AS_BATON, Carte.AS_EPEE, Carte.AS_PIECE, Carte.CINQ_BATON);
-    assertThat(joueurOrdi1.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_EPEE, Carte.DEUX_PIECE, Carte.CINQ_COUPE);
-    assertThat(joueurOrdi2.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_EPEE, Carte.TROIS_PIECE, Carte.CINQ_EPEE);
+    assertThat(joueurOrdi2.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_EPEE, Carte.DEUX_PIECE, Carte.CINQ_COUPE);
+    assertThat(joueurOrdi1.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_EPEE, Carte.TROIS_PIECE, Carte.CINQ_EPEE);
     assertThat(joueurZaku.main().cartes()).containsExactly(Carte.QUATRE_BATON, Carte.QUATRE_EPEE, Carte.QUATRE_PIECE, Carte.CINQ_PIECE);
   }
 

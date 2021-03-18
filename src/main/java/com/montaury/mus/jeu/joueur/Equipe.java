@@ -6,6 +6,7 @@ import java.util.List;
 public class Equipe {
     List<Joueur> joueurs;
     String nom;
+    boolean estEnJeu = false;
 
     public Equipe(Joueur j1,Joueur j2,String nomEquipe){
         j1.equipe(this);
@@ -19,14 +20,14 @@ public class Equipe {
     public static Equipe equipeJoueur(Joueur humain){
         return new Equipe(
                 humain,
-                Joueur.ordinateur("Ordi1"),
+                Joueur.ordinateur("OrdiAvecJoueur"),
                 "Equipe 1"
         );
     };
     public static Equipe equipeOrdi(){
         return new Equipe(
-                Joueur.ordinateur("Ordi2"),
-                Joueur.ordinateur("Ordi3"),
+                Joueur.ordinateur("OrdiPaGenti1"),
+                Joueur.ordinateur("OrdiPaGenti2"),
                 "Equipe 2"
         );
     };
@@ -37,4 +38,7 @@ public class Equipe {
     public List<Joueur> getJoueurs(){
         return joueurs;
     }
+    public boolean EstEnJeu(){return estEnJeu;}
+    public void EstEnJeu(boolean val){estEnJeu = val;}
+
 }

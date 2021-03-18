@@ -10,9 +10,12 @@ public class Paires extends Phase {
 
   @Override
   protected boolean peutParticiper(Joueur joueur) {
-    return joueur.main().aDesPaires();
-  }
+    if(joueur.main().aDesPaires()){
+      return true;
+    }
+    return false;
 
+  }
   @Override
   protected Joueur meilleurParmi(Opposants opposants) {
     Joueur meilleur = opposants.joueurEsku();

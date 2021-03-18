@@ -12,6 +12,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PairesTest {
   @Test
+  void ne_doit_pas_se_derouler_si_une_seule_equipe_a_des_paires() {
+    Joueur joueurEsku = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SEPT_COUPE));
+    Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));
+    Joueur ordi1 = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SEPT_COUPE));
+    Joueur ordi2 = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));
+
+    Equipe equipe1 = new Equipe(joueurEsku,ordi1,"e1");
+    Equipe equipe2 = new Equipe(joueurZaku,ordi2,"e2");
+
+    Opposants opposants = new Opposants(
+            equipe1,equipe2
+    );
+
+    boolean peutSeDerouler = new Paires().peutSeDerouler(opposants);
+
+    assertThat(peutSeDerouler).isFalse();
+  }
+  @Test
   void ne_doit_pas_se_derouler_si_personne_n_a_de_paires() {
     Joueur joueurEsku = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.AS_COUPE));
     Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));

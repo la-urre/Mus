@@ -2,6 +2,7 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
@@ -51,6 +52,8 @@ public abstract class Phase {
       score.remporterManche(vainqueur.equipe());
       return Resultat.termine(vainqueur, 0);
     }
+    for(Equipe e:opposants.equipes())e.EstEnJeu(false);
+
     Joueur vainqueurPhase = meilleurParmi(opposants);
     int bonus = pointsBonus(vainqueurPhase);
     return Resultat.suspendu(vainqueurPhase, dialogue.estConcluPar(PASO) && bonus != 0 ? 0 : dialogue.pointsEngages(), bonus);
@@ -66,13 +69,16 @@ public abstract class Phase {
     return participants;
   }
 
-  public final boolean peutSeDerouler(Opposants opposants) {
+  public boolean peutSeDerouler(Opposants opposants) {
     int compteur = 0;
+
     for (Joueur j:opposants.dansLOrdre()) {
-      if(peutParticiper(j)) {
-        compteur++;
+      if(peutParticiper(j))j.equipe().EstEnJeu(true);
       }
+    for(Equipe e:opposants.equipes()){
+      if(e.EstEnJeu())compteur++;
     }
+
     if (compteur>=2) {
       return true;
     } else {
