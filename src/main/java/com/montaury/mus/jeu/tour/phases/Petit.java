@@ -31,6 +31,7 @@ public class Petit extends Phase {
 
     List<List<Carte>> tabCartesDesJoueurs = new ArrayList<List<Carte>>() {
     };
+    tabCartesDesJoueurs.add(cartesJoueurEsku);
     tabCartesDesJoueurs.add(cartesJoueurDeux);
     tabCartesDesJoueurs.add(cartesJoueurTrois);
     tabCartesDesJoueurs.add(cartesJoueurZaku);
@@ -38,7 +39,7 @@ public class Petit extends Phase {
     ValeurCarte.Comparaison compare;
 
     for (int i = 0; i < Main.TAILLE; i++) {
-      for (int j = 0; j < 2; j++) {
+      for (int j = 0; j < 4; j++) {
         compare = meilleurMain.get(i).comparerAvec(tabCartesDesJoueurs.get(j).get(i));
 
         if (compare == PLUS_GRANDE) {

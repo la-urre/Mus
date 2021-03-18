@@ -32,7 +32,7 @@ public abstract class Phase {
     if (joueurs.isEmpty()) {
       return Resultat.nonJouable();
     }
-    if (joueurs.size() == 1) {
+    if (joueurs.size() == 1 || (joueurs.size() == 2 && joueurs.get(0).equipe() == joueurs.get(1).equipe())) {
       return Resultat.termine(joueurs.get(0), pointsBonus(joueurs.get(0)));
     }
     DialogueTermine dialogue = new Dialogue().derouler(affichage, opposants);
@@ -65,9 +65,7 @@ public abstract class Phase {
     return peutParticiper(opposants.joueurEsku()) && peutParticiper(opposants.joueurZaku());
   }
 
-  protected boolean peutParticiper(Joueur joueur) {
-    return true;
-  }
+  protected boolean peutParticiper(Joueur joueur) { return true; }
 
   protected abstract Joueur meilleurParmi(Opposants opposants);
 

@@ -47,6 +47,8 @@ public class Opposants {
 
   public List<Joueur> dansLOrdre() {return List.of(joueurEsku, joueurDeux, joueurTrois, joueurZaku);}
 
+  public List<Equipe> dansLOrdreEquipes() { return List.of(equipeHumain, equipeOrdinateur); }
+
   private static class IteratorInfini implements Iterator<Joueur> {
     private final Opposants opposants;
     private Joueur suivant;

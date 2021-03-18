@@ -87,8 +87,4 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
   private void println() {
     System.out.println();
   }
-
-  public void quitter() {
-    System.exit(0);
-  }
 }

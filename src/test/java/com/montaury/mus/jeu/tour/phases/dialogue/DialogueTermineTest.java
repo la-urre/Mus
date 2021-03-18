@@ -78,10 +78,11 @@ class DialogueTermineTest {
   @Test
   void devrait_compter_1_point_engage_pour_3_imido_tira() {
     DialogueTermine dialogue = new DialogueTermine(List.of(
-      new Dialogue.ChoixJoueur(new Imido(3), joueur1),
-      new Dialogue.ChoixJoueur(new Tira(), joueur2),
-      new Dialogue.ChoixJoueur(new Tira(), joueur3),
-      new Dialogue.ChoixJoueur(new Tira(), joueur4))
+      new Dialogue.ChoixJoueur(new Imido(3), joueur1)//,
+      //new Dialogue.ChoixJoueur(new Tira(), joueur2),
+      //new Dialogue.ChoixJoueur(new Tira(), joueur3),
+      //new Dialogue.ChoixJoueur(new Tira(), joueur4)
+            )
     );
 
     assertThat(dialogue.pointsEngages()).isEqualTo(1);
