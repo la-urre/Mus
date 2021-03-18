@@ -26,12 +26,12 @@ public class Grand extends Phase {
   protected Joueur comparerDeuxJoueurs(Joueur joueur1, Joueur joueur2) {
     List<Carte> cartesJoueur1 = joueur1.main().cartesDuPlusGrandAuPlusPetit();
     List<Carte> cartesJoueur2 = joueur2.main().cartesDuPlusGrandAuPlusPetit();
-    for (int i = Main.TAILLE - 1; i >= 0; i--) {
+    for (int i = 0; i < Main.TAILLE; i++) {
       ValeurCarte.Comparaison compare = cartesJoueur1.get(i).comparerAvec(cartesJoueur2.get(i));
-      if (compare == PLUS_PETITE) {
+      if (compare == PLUS_GRANDE) {
         return joueur1;
       }
-      if (compare == PLUS_GRANDE) {
+      if (compare == PLUS_PETITE) {
         return joueur2;
       }
     }
