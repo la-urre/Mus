@@ -17,8 +17,8 @@ public class Grand extends Phase {
   @Override
   protected Joueur meilleurParmi(Opposants opposants) {
     Joueur joueurEsku = opposants.joueurEsku();
-    Joueur joueur2 = opposants.joueur2equipe1();
-    Joueur joueur3 = opposants.joueur1equipe2();
+    Joueur joueur3 = opposants.joueur2equipe1();
+    Joueur joueur2 = opposants.joueur1equipe2();
     Joueur joueurZaku = opposants.joueurZaku();
     Joueur joueurEquipe1Choisi = null;
     Joueur joueurEquipe2Choisi = null;
@@ -35,32 +35,39 @@ public class Grand extends Phase {
 
     for (int i = 0; i < Main.TAILLE; i++) {
       ValeurCarte.Comparaison compareEquipe1 = cartesJoueurEsku.get(i).comparerAvec(cartesjoueur3.get(i));
-      if (compareEquipe1 == PLUS_GRANDE || compareEquipe1 == MEME_RANG) {
+      if (compareEquipe1 == PLUS_GRANDE) {
         cartesjoueurPlusGrandEquipe1 = cartesJoueurEsku;
         joueurEquipe1Choisi = joueurEsku;
+        break;
       } else if (compareEquipe1 == PLUS_PETITE) {
         cartesjoueurPlusGrandEquipe1 = cartesjoueur3;
         joueurEquipe1Choisi = joueur3;
+        break;
       }
+    }
 
+    for (int i = 0; i < Main.TAILLE; i++) {
       ValeurCarte.Comparaison compareEquipe2 = cartesjoueur2.get(i).comparerAvec(cartesJoueurZaku.get(i));
-      if (compareEquipe2 == PLUS_GRANDE || compareEquipe2 == MEME_RANG) {
+      if (compareEquipe2 == PLUS_GRANDE) {
         cartesjoueurPlusGrandEquipe2 = cartesjoueur2;
         joueurEquipe2Choisi = joueur2;
+        break;
       } else if (compareEquipe2 == PLUS_PETITE) {
         cartesjoueurPlusGrandEquipe2 = cartesJoueurZaku;
         joueurEquipe2Choisi = joueurZaku;
+        break;
       }
-
+    }
+    for (int i = 0; i < Main.TAILLE; i++) {
       ValeurCarte.Comparaison compareEntreEquipe = cartesjoueurPlusGrandEquipe1.get(i).comparerAvec(cartesjoueurPlusGrandEquipe2.get(i));
-      if (compareEntreEquipe == PLUS_GRANDE || compareEntreEquipe == MEME_RANG) {
+      if (compareEntreEquipe == PLUS_GRANDE ) {
         joueurFinal= joueurEquipe1Choisi;
+        break;
       } else if (compareEntreEquipe == PLUS_PETITE) {
         joueurFinal= joueurEquipe2Choisi;
+        break;
 
       }
-
-
     }
     return joueurFinal;
   }
