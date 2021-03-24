@@ -36,6 +36,8 @@ public class Partie {
 
     public Score(Opposants opposants) {
       this.manchesGagneesParJoueur.put(opposants.joueurEsku(), 0);
+      this.manchesGagneesParJoueur.put(opposants.joueur1equipe2(), 0);
+      this.manchesGagneesParJoueur.put(opposants.joueur2equipe1(), 0);
       this.manchesGagneesParJoueur.put(opposants.joueurZaku(), 0);
     }
 
