@@ -35,10 +35,10 @@ public class Partie {
     private final Map<Joueur, Integer> manchesGagneesParJoueur = new HashMap<>();
 
     public Score(Opposants opposants) {
-      this.manchesGagneesParJoueur.put(opposants.joueurEsku(), 0);
-      this.manchesGagneesParJoueur.put(opposants.joueur1equipe2(), 0);
-      this.manchesGagneesParJoueur.put(opposants.joueur2equipe1(), 0);
-      this.manchesGagneesParJoueur.put(opposants.joueurZaku(), 0);
+      this.manchesGagneesParJoueur.put(opposants.joueur1(), 0);
+      this.manchesGagneesParJoueur.put(opposants.joueur3(), 0);
+      this.manchesGagneesParJoueur.put(opposants.joueur2(), 0);
+      this.manchesGagneesParJoueur.put(opposants.joueur4(), 0);
     }
 
     public Optional<Joueur> enregistrer(Manche.Resultat score) {

@@ -32,10 +32,10 @@ public class Manche {
     private final Map<Joueur, Integer> scoreParJoueur = new HashMap<>();
 
     public Score(Opposants opposants) {
-      scoreParJoueur.put(opposants.joueurEsku(), 0);
-      scoreParJoueur.put(opposants.joueur1equipe2(), 0);
-      scoreParJoueur.put(opposants.joueur2equipe1(), 0);
-      scoreParJoueur.put(opposants.joueurZaku(), 0);
+      scoreParJoueur.put(opposants.joueur1(), 0);
+      scoreParJoueur.put(opposants.joueur3(), 0);
+      scoreParJoueur.put(opposants.joueur2(), 0);
+      scoreParJoueur.put(opposants.joueur4(), 0);
 
 
     }
