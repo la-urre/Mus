@@ -27,11 +27,11 @@ public class FauxJeu extends Phase {
     int pointsMeilleurJoueurEquipe2 = opposants.joueurZaku().main().pointsPourJeu();
     Joueur meilleurJoueurEquipe2 = opposants.joueurEsku();
 
-    if (pointsJoueurAllie >= pointsJoueurEsku){
+    if (pointsJoueurAllie > pointsJoueurEsku){
       pointsMeilleurJoueurEquipe1=pointsJoueurAllie;
       meilleurJoueurEquipe1 = opposants.joueur2equipe1();
     }
-    if (pointsJoueurEnemie >= pointsJoueurZaku){
+    if (pointsJoueurEnemie > pointsJoueurZaku){
       pointsMeilleurJoueurEquipe2=pointsJoueurEnemie;
       meilleurJoueurEquipe2 = opposants.joueur1equipe2();
     }

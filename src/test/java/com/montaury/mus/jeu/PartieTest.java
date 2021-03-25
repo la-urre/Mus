@@ -1,5 +1,6 @@
 package com.montaury.mus.jeu;
 
+import com.montaury.mus.jeu.equipe.Equipe;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.InterfaceJoueur;
 import com.montaury.mus.jeu.joueur.Joueur;
@@ -18,18 +19,28 @@ class PartieTest {
 
   @BeforeEach
   void setUp() {
-    interfaceJoueurEsku = mock(InterfaceJoueur.class);
-    interfaceJoueurZaku = mock(InterfaceJoueur.class);
-    Joueur joueurEsku = new Joueur("J1", interfaceJoueurEsku);
-    Joueur joueurZaku = new Joueur("J2", interfaceJoueurZaku);
-    opposants = new Opposants(joueurEsku, joueurZaku);
+    interfaceJoueur1 = mock(InterfaceJoueur.class);
+    interfaceJoueur2 = mock(InterfaceJoueur.class);
+    interfaceJoueur3 = mock(InterfaceJoueur.class);
+    interfaceJoueur4 = mock(InterfaceJoueur.class);
+    joueur1 = new Joueur("J1", interfaceJoueur1);
+    joueur2 = new Joueur("J2", interfaceJoueur2);
+    joueur3 = new Joueur("J3", interfaceJoueur3);
+    joueur4 = new Joueur("J4", interfaceJoueur4);
+
+    equipe1 = new Equipe(joueur1,joueur2);
+    equipe2 = new Equipe(joueur3,joueur4);
+
+    opposants = new Opposants(equipe1, equipe2);
     partie = new Partie(mock(AffichageEvenementsDeJeu.class));
   }
 
   @Test
   void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
-    when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Hordago());
-    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Kanta());
+    when(interfaceJoueur1.faireChoixParmi(any())).thenReturn(new Hordago());
+    when(interfaceJoueur2.faireChoixParmi(any())).thenReturn(new Kanta());
+    when(interfaceJoueur3.faireChoixParmi(any())).thenReturn(new Kanta());
+    when(interfaceJoueur4.faireChoixParmi(any())).thenReturn(new Kanta());
 
     Partie.Resultat resultat = partie.jouer(opposants);
 
@@ -37,8 +48,16 @@ class PartieTest {
     assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
   }
 
-  private InterfaceJoueur interfaceJoueurEsku;
-  private InterfaceJoueur interfaceJoueurZaku;
+  private InterfaceJoueur interfaceJoueur1;
+  private InterfaceJoueur interfaceJoueur2;
+  private InterfaceJoueur interfaceJoueur3;
+  private InterfaceJoueur interfaceJoueur4;
+  private Joueur joueur1;
+  private Joueur joueur2;
+  private Joueur joueur3;
+  private Joueur joueur4;
+  private Equipe equipe1;
+  private Equipe equipe2;
   private Opposants opposants;
   private Partie partie;
 }

@@ -20,9 +20,11 @@ public class Petit extends Phase {
     Joueur joueur3 = opposants.joueur2equipe1();
     Joueur joueur2 = opposants.joueur1equipe2();
     Joueur joueurZaku = opposants.joueurZaku();
-    Joueur joueurEquipe1Choisi = null;
-    Joueur joueurEquipe2Choisi = null;
-    Joueur joueurFinal=null;
+
+    Joueur joueurEquipe1Choisi = joueurEsku;
+    Joueur joueurEquipe2Choisi = joueur2;
+
+    Joueur joueurFinal=joueurEsku;
 
     List<Carte> cartesJoueurEsku = joueurEsku.main().cartesDuPlusGrandAuPlusPetit();
     List<Carte> cartesjoueur2 = joueur2.main().cartesDuPlusGrandAuPlusPetit();
@@ -45,6 +47,7 @@ public class Petit extends Phase {
         break;
       }
     }
+
     for (int i = Main.TAILLE - 1; i >= 0; i--) {
       ValeurCarte.Comparaison compareEquipe2 = cartesjoueur2.get(i).comparerAvec(cartesJoueurZaku.get(i));
       if (compareEquipe2 == PLUS_PETITE) {
@@ -57,22 +60,19 @@ public class Petit extends Phase {
         break;
       }
     }
+
     for (int i = Main.TAILLE - 1; i >= 0; i--) {
       ValeurCarte.Comparaison compareEntreEquipe = cartesjoueurPlusGrandEquipe1.get(i).comparerAvec(cartesjoueurPlusGrandEquipe2.get(i));
       if (compareEntreEquipe == PLUS_PETITE) {
         joueurFinal= joueurEquipe1Choisi;
         break;
-      } else if (compareEntreEquipe == PLUS_GRANDE) {
+      }
+      else if (compareEntreEquipe == PLUS_GRANDE) {
         joueurFinal= joueurEquipe2Choisi;
         break;
-
       }
     }
     return joueurFinal;
-
-
-
-
 
   }
 }
