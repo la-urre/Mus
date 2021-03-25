@@ -132,13 +132,15 @@ class TourTest {
     when(interfacejoueurAmi.faireChoixParmi(any())).thenReturn(new Idoki());
     when(interfacejoueurEnemie.faireChoixParmi(any())).thenReturn(new Idoki());
 
-    Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.AS_BATON, Carte.DEUX_BATON, Carte.TROIS_BATON, Carte.QUATRE_BATON, Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE
-            ,Carte.AS_BATON, Carte.DEUX_BATON, Carte.TROIS_BATON, Carte.QUATRE_BATON, Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE), new Defausse());
+    Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.AS_BATON, Carte.DEUX_BATON, Carte.TROIS_BATON, Carte.QUATRE_BATON,
+            Carte.CINQ_COUPE, Carte.SIX_EPEE, Carte.SEPT_BATON, Carte.VALET_PIECE,
+            Carte.CINQ_COUPE, Carte.SIX_EPEE, Carte.SEPT_BATON, Carte.VALET_PIECE,
+            Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE), new Defausse());
     tour.jouer(opposants, score);
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 17);
+    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 4);
     assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 0);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurAmi, 0);
+    assertThat(score.scoreParJoueur()).containsEntry(joueurAmi, 3);
     assertThat(score.scoreParJoueur()).containsEntry(joueurEnemie, 0);
   }
 

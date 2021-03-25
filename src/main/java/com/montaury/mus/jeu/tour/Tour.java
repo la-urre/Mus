@@ -41,7 +41,7 @@ public class Tour {
     ResultatsPhases resultats = new ResultatsPhases();
     Iterator<Phase> phases = phasesJouablesPar(opposants).iterator();
     do {
-      Phase.Resultat resultat = phases.next().jouer(affichage, opposants, score);
+      Phase.Resultat resultat = phases.next().jouer(affichage, opposants, score);//bug lors des test
       resultats.ajouter(resultat);
     } while (phases.hasNext() && score.vainqueur().isEmpty());
 
