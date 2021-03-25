@@ -48,8 +48,8 @@ class GrandTest {
   @Test
   void devrait_faire_gagner_le_joueur_esku_si_les_deux_mains_sont_egales() {
     Joueur joueurEsku = unJoueurAvec(main(Carte.AS_COUPE, Carte.QUATRE_COUPE, Carte.VALET_COUPE, Carte.SIX_COUPE));
-    Joueur joueurDeux = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_BATON, Carte.CAVALIER_BATON, Carte.SIX_BATON));
-    Joueur joueurTrois = unJoueurAvec(main(Carte.CAVALIER_PIECE, Carte.SIX_PIECE, Carte.QUATRE_PIECE, Carte.AS_PIECE));
+    Joueur joueurDeux = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_BATON, Carte.SEPT_BATON, Carte.SIX_BATON));
+    Joueur joueurTrois = unJoueurAvec(main(Carte.SEPT_PIECE, Carte.SIX_PIECE, Carte.QUATRE_PIECE, Carte.AS_PIECE));
     Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_EPEE, Carte.SIX_EPEE, Carte.QUATRE_EPEE, Carte.AS_EPEE));
 
     Joueur vainqueur = new Grand().meilleurParmi(new Opposants(joueurEsku, joueurDeux, joueurTrois, joueurZaku));

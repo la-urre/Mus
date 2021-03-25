@@ -39,7 +39,7 @@ public class Grand extends Phase {
     ValeurCarte.Comparaison compare;
 
     for (int i = 0; i < Main.TAILLE; i++) {
-      for(int j =0 ; j < 2 ; j++ ){
+      for(int j =0 ; j < 3 ; j++ ){
         compare = meilleurMain.get(i).comparerAvec(tabCartesDesJoueurs.get(j).get(i));
 
         if(compare == PLUS_PETITE){

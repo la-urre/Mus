@@ -105,8 +105,7 @@ class DialogueTermineTest {
     DialogueTermine dialogue = new DialogueTermine(List.of(
       new Dialogue.ChoixJoueur(new Imido(), joueur1),
       new Dialogue.ChoixJoueur(new Idoki(), joueur2),
-      new Dialogue.ChoixJoueur(new Tira(), joueur3),
-      new Dialogue.ChoixJoueur(new Tira(), joueur4))
+      new Dialogue.ChoixJoueur(new Tira(), joueur3))
     );
 
     assertThat(dialogue.pointsEngages()).isEqualTo(2);

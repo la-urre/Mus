@@ -15,7 +15,7 @@ public class Joueur {
   private final String nom;
   public final InterfaceJoueur interfaceJoueur;
   private final Main main = Main.vide();
-  private Equipe equipe ;
+  private Equipe equipe;
 
 
 

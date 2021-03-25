@@ -12,7 +12,6 @@ public class Equipe {
         this.joueurB = joueurB;
         this.nom = nom ;
 
-
         joueurA.setEquipe(this) ;
         joueurB.setEquipe(this);
 
