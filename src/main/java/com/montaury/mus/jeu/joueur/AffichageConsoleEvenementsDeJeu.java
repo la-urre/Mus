@@ -33,7 +33,7 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
 
   @Override
   public void nouveauTour(Opposants opposants) {
-    println(opposants.joueurEsku().nom() + " est esku");
+    println(opposants.joueur1().nom() + " est esku");
   }
 
   @Override

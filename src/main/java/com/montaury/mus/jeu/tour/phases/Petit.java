@@ -16,10 +16,10 @@ public class Petit extends Phase {
 
   @Override
   protected Joueur meilleurParmi(Opposants opposants) {
-    Joueur joueurEsku = opposants.joueurEsku();
-    Joueur joueur3 = opposants.joueur2equipe1();
-    Joueur joueur2 = opposants.joueur1equipe2();
-    Joueur joueurZaku = opposants.joueurZaku();
+    Joueur joueurEsku = opposants.joueur1();
+    Joueur joueur3 = opposants.joueur2();
+    Joueur joueur2 = opposants.joueur3();
+    Joueur joueurZaku = opposants.joueur4();
 
     Joueur joueurEquipe1Choisi = joueurEsku;
     Joueur joueurEquipe2Choisi = joueur2;
