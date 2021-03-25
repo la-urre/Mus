@@ -1,8 +1,9 @@
 package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.carte.Carte;
+import com.montaury.mus.jeu.equipe.Equipe;
+import com.montaury.mus.jeu.equipe.Opposants;
 import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
 import org.junit.jupiter.api.Test;
 
 import static com.montaury.mus.jeu.joueur.Fixtures.main;
@@ -13,8 +14,10 @@ class PairesTest {
   @Test
   void ne_doit_pas_se_derouler_si_personne_n_a_de_paires() {
     Opposants opposants = new Opposants(
-      unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
-      unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE))
+      new Equipe( unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
+                  unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE))),
+      new Equipe( unJoueurAvec(main(Carte.DEUX_PIECE, Carte.ROI_BATON, Carte.VALET_EPEE, Carte.AS_COUPE)),
+                  unJoueurAvec(main(Carte.DEUX_EPEE, Carte.TROIS_PIECE, Carte.CINQ_BATON, Carte.AS_EPEE)))
     );
 
     boolean peutSeDerouler = new Paires().peutSeDerouler(opposants);
@@ -25,8 +28,10 @@ class PairesTest {
   @Test
   void ne_doit_pas_se_derouler_si_un_des_joueurs_n_a_pas_de_paires() {
     Opposants opposants = new Opposants(
-      unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
-      unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.SIX_EPEE, Carte.AS_PIECE))
+      new Equipe( unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
+                  unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE))),
+      new Equipe( unJoueurAvec(main(Carte.DEUX_PIECE, Carte.ROI_BATON, Carte.VALET_EPEE, Carte.AS_COUPE)),
+                  unJoueurAvec(main(Carte.DEUX_EPEE, Carte.TROIS_PIECE, Carte.CINQ_BATON, Carte.AS_EPEE)))
     );
 
     boolean peutSeDerouler = new Paires().peutSeDerouler(opposants);
@@ -35,10 +40,12 @@ class PairesTest {
   }
 
   @Test
-  void devrait_se_derouler_si_les_deux_joueurs_ont_des_paires() {
+  void devrait_se_derouler_si_un_joueur_de_chaque_equipe_ont_un_ou_des_paires() {
     Opposants opposants = new Opposants(
-      unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.QUATRE_COUPE)),
-      unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.SIX_EPEE, Carte.AS_PIECE))
+      new Equipe( unJoueurAvec(main(Carte.DEUX_COUPE, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
+                  unJoueurAvec(main(Carte.AS_BATON, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE))),
+      new Equipe( unJoueurAvec(main(Carte.DEUX_PIECE, Carte.DEUX_EPEE, Carte.VALET_EPEE, Carte.AS_COUPE)),
+                  unJoueurAvec(main(Carte.ROI_BATON, Carte.TROIS_PIECE, Carte.CINQ_BATON, Carte.AS_EPEE)))
     );
 
     boolean peutSeDerouler = new Paires().peutSeDerouler(opposants);
@@ -48,15 +55,17 @@ class PairesTest {
 
   @Test
   void devrait_faire_gagner_le_joueur_ayant_la_meilleure_paire() {
-    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.SIX_EPEE, Carte.AS_PIECE));
+    Joueur j2=unJoueurAvec(main(Carte.ROI_EPEE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.ROI_EPEE));
     Opposants opposants = new Opposants(
-      unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.QUATRE_COUPE)),
-      joueurZaku
+      new Equipe( unJoueurAvec(main(Carte.DEUX_COUPE, Carte.DEUX_COUPE, Carte.VALET_BATON, Carte.SIX_COUPE)),
+                  j2),
+      new Equipe( unJoueurAvec(main(Carte.DEUX_PIECE, Carte.DEUX_EPEE, Carte.VALET_EPEE, Carte.AS_COUPE)),
+                  unJoueurAvec(main(Carte.ROI_BATON, Carte.TROIS_PIECE, Carte.TROIS_PIECE, Carte.AS_EPEE)))
     );
 
     Joueur vainqueur = new Paires().meilleurParmi(opposants);
 
-    assertThat(vainqueur).isEqualTo(joueurZaku);
+    assertThat(vainqueur).isEqualTo(j2);
   }
 
   @Test

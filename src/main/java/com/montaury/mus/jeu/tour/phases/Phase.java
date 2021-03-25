@@ -1,9 +1,9 @@
 package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.Manche;
+import com.montaury.mus.jeu.equipe.Opposants;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
 import com.montaury.mus.jeu.tour.phases.dialogue.DialogueTermine;
 import java.util.List;
@@ -61,7 +61,7 @@ public abstract class Phase {
   }
 
   public final boolean peutSeDerouler(Opposants opposants) {
-    return peutParticiper(opposants.joueurEsku()) && peutParticiper(opposants.joueurZaku());
+    return (peutParticiper(opposants.joueur1()) || peutParticiper(opposants.joueur2())) && (peutParticiper(opposants.joueur4()) || peutParticiper(opposants.joueur3()));
   }
 
   protected boolean peutParticiper(Joueur joueur) {

@@ -2,7 +2,7 @@ package com.montaury.mus.jeu;
 
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.equipe.Opposants;
 import com.montaury.mus.jeu.tour.Tour;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +32,12 @@ public class Manche {
     private final Map<Joueur, Integer> scoreParJoueur = new HashMap<>();
 
     public Score(Opposants opposants) {
-      scoreParJoueur.put(opposants.joueurEsku(), 0);
-      scoreParJoueur.put(opposants.joueurZaku(), 0);
+      scoreParJoueur.put(opposants.joueur1(), 0);
+      scoreParJoueur.put(opposants.joueur3(), 0);
+      scoreParJoueur.put(opposants.joueur2(), 0);
+      scoreParJoueur.put(opposants.joueur4(), 0);
+
+
     }
 
     public Map<Joueur, Integer> scoreParJoueur() {

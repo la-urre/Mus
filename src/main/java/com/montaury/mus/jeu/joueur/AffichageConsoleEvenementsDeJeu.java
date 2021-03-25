@@ -2,8 +2,10 @@ package com.montaury.mus.jeu.joueur;
 
 import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.Partie;
+import com.montaury.mus.jeu.equipe.Opposants;
 import com.montaury.mus.jeu.tour.phases.Phase;
 import com.montaury.mus.jeu.tour.phases.dialogue.Choix;
+
 import java.util.stream.Collectors;
 
 public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu {
@@ -31,7 +33,7 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
 
   @Override
   public void nouveauTour(Opposants opposants) {
-    println(opposants.joueurEsku().nom() + " est esku");
+    println(opposants.joueur1().nom() + " est esku");
   }
 
   @Override
