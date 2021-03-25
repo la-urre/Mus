@@ -22,7 +22,7 @@ public class Grand extends Phase {
     Joueur joueurZaku = opposants.joueurZaku();
     Joueur joueurEquipe1Choisi = null;
     Joueur joueurEquipe2Choisi = null;
-    Joueur joueurFinal=null;
+    Joueur joueurFinal=joueurEsku;
 
 
     List<Carte> cartesJoueurEsku = joueurEsku.main().cartesDuPlusGrandAuPlusPetit();

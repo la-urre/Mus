@@ -46,8 +46,8 @@ class MusTest {
     mus.jouer(opposants);
 
     assertThat(joueur1.main().cartes()).containsExactly(Carte.AS_BATON, Carte.AS_COUPE, Carte.AS_EPEE, Carte.AS_PIECE);
-    assertThat(joueur2.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_COUPE, Carte.DEUX_EPEE, Carte.DEUX_PIECE);
-    assertThat(joueur3.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_COUPE, Carte.TROIS_EPEE, Carte.TROIS_PIECE);
+    assertThat(joueur2.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_COUPE, Carte.TROIS_EPEE, Carte.TROIS_PIECE);
+    assertThat(joueur3.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_COUPE, Carte.DEUX_EPEE, Carte.DEUX_PIECE);
     assertThat(joueur4.main().cartes()).containsExactly(Carte.QUATRE_BATON, Carte.QUATRE_COUPE, Carte.QUATRE_EPEE, Carte.QUATRE_PIECE);
   }
 
@@ -57,28 +57,28 @@ class MusTest {
 
     mus.jouer(opposants);
 
-    verify(interfaceJoueur2, times(0)).veutAllerMus();
+    verify(interfaceJoueur3, times(0)).veutAllerMus();
   }
-
+  /* l equipié du joueur etant aleatire pour le choix de mus pas de test car forcement true si bot plus intelligent change
   @Test
   void devrait_se_terminer_si_le_joueur_2_veut_sortir() {
     when(interfaceJoueur1.veutAllerMus()).thenReturn(true);
+    when(interfaceJoueur3.veutAllerMus()).thenReturn(true);
     when(interfaceJoueur2.veutAllerMus()).thenReturn(false);
 
     mus.jouer(opposants);
 
-    verify(interfaceJoueur3, times(0)).veutAllerMus();
-  }
-  /* choix du joueur 3 est forcement mus pour pas penaliser le joueur car fait de facon aleatoire
+    verify(interfaceJoueur4, times(0)).veutAllerMus();
+  }*/
+
   @Test
   void devrait_se_terminer_si_le_joueur_3_veut_sortir() {
     when(interfaceJoueur1.veutAllerMus()).thenReturn(true);
-    when(interfaceJoueur2.veutAllerMus()).thenReturn(true);
     when(interfaceJoueur3.veutAllerMus()).thenReturn(false);
     mus.jouer(opposants);
 
-    verify(interfaceJoueur4, times(0)).veutAllerMus();
-  }*/
+    verify(interfaceJoueur2, times(0)).veutAllerMus();
+  }
 
   @Test
   void devrait_se_terminer_si_le_joueur_4_veut_sortir() {
@@ -118,7 +118,7 @@ class MusTest {
 
     mus.jouer(opposants);
 
-    assertThat(defausse.reprendreCartes()).containsExactly(Carte.AS_COUPE, Carte.DEUX_COUPE,Carte.TROIS_COUPE,Carte.QUATRE_COUPE);
+    assertThat(defausse.reprendreCartes()).containsExactly(Carte.AS_COUPE, Carte.TROIS_COUPE, Carte.DEUX_COUPE,Carte.QUATRE_COUPE);
   }
 
   @Test
@@ -126,17 +126,17 @@ class MusTest {
     when(interfaceJoueur1.veutAllerMus()).thenReturn(true, false);
     when(interfaceJoueur1.cartesAJeter()).thenReturn(List.of(Carte.AS_COUPE));
     when(interfaceJoueur2.veutAllerMus()).thenReturn(true);
-    when(interfaceJoueur2.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
+    when(interfaceJoueur2.cartesAJeter()).thenReturn(List.of(Carte.TROIS_COUPE));
     when(interfaceJoueur3.veutAllerMus()).thenReturn(true);
-    when(interfaceJoueur3.cartesAJeter()).thenReturn(List.of(Carte.TROIS_COUPE));
+    when(interfaceJoueur3.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
     when(interfaceJoueur4.veutAllerMus()).thenReturn(true);
     when(interfaceJoueur4.cartesAJeter()).thenReturn(List.of(Carte.QUATRE_COUPE));
 
     mus.jouer(opposants);
 
     assertThat(joueur1.main().cartes()).containsExactly(Carte.AS_BATON, Carte.AS_EPEE, Carte.AS_PIECE , Carte.CINQ_BATON);
-    assertThat(joueur2.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_EPEE, Carte.DEUX_PIECE , Carte.CINQ_COUPE);
-    assertThat(joueur3.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_EPEE, Carte.TROIS_PIECE , Carte.CINQ_EPEE);
+    assertThat(joueur2.main().cartes()).containsExactly(Carte.TROIS_BATON, Carte.TROIS_EPEE, Carte.TROIS_PIECE , Carte.CINQ_EPEE);
+    assertThat(joueur3.main().cartes()).containsExactly( Carte.DEUX_BATON, Carte.DEUX_EPEE, Carte.DEUX_PIECE , Carte.CINQ_COUPE);
     assertThat(joueur4.main().cartes()).containsExactly(Carte.QUATRE_BATON, Carte.QUATRE_EPEE, Carte.QUATRE_PIECE , Carte.CINQ_PIECE);
   }
 

@@ -26,10 +26,10 @@ class JeuTest {
   }
 
   @Test
-  void ne_doit_pas_se_derouler_si_un_des_joueurs_n_a_pas_le_jeu() {
+  void ne_doit_pas_se_derouler_si_une_des_deux_equipe_n_a_pas_le_jeu() {
     Opposants opposants = new Opposants(
             new Equipe( unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
-                    unJoueurAvec(main(Carte.VALET_PIECE, Carte.ROI_EPEE, Carte.CAVALIER_COUPE, Carte.AS_PIECE))),
+                    unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.AS_PIECE))),
             new Equipe( unJoueurAvec(main(Carte.VALET_PIECE, Carte.ROI_BATON, Carte.CAVALIER_EPEE, Carte.AS_COUPE)),
                     unJoueurAvec(main(Carte.VALET_PIECE, Carte.ROI_COUPE, Carte.CAVALIER_PIECE, Carte.AS_EPEE)))
     );
@@ -62,7 +62,7 @@ class JeuTest {
     Equipe equipe1 = new Equipe(joueur1,joueur2);
     Equipe equipe2 = new Equipe(joueur3,joueur4);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(equipe1, equipe2));
+    Joueur vainqueur = new Jeu().meilleurParmi(new Opposants(equipe1, equipe2));
     assertThat(vainqueur).isEqualTo(joueur1);
   }
 
@@ -75,7 +75,7 @@ class JeuTest {
     Equipe equipe1 = new Equipe(joueur1,joueur2);
     Equipe equipe2 = new Equipe(joueur3,joueur4);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(equipe1, equipe2));
+    Joueur vainqueur = new Jeu().meilleurParmi(new Opposants(equipe1, equipe2));
     assertThat(vainqueur).isEqualTo(joueur1);
   }
 
@@ -88,7 +88,7 @@ class JeuTest {
     Equipe equipe1 = new Equipe(joueur1,joueur2);
     Equipe equipe2 = new Equipe(joueur3,joueur4);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(equipe1, equipe2));
+    Joueur vainqueur = new Jeu().meilleurParmi(new Opposants(equipe1, equipe2));
     assertThat(vainqueur).isEqualTo(joueur1);
   }
 
@@ -101,7 +101,7 @@ class JeuTest {
     Equipe equipe1 = new Equipe(joueur1,joueur2);
     Equipe equipe2 = new Equipe(joueur3,joueur4);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(equipe1, equipe2));
+    Joueur vainqueur = new Jeu().meilleurParmi(new Opposants(equipe1, equipe2));
     assertThat(vainqueur).isEqualTo(joueur1);
   }
 

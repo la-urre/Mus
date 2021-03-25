@@ -15,30 +15,59 @@ public class Paires extends Phase {
 
   @Override
   protected Joueur meilleurParmi(Opposants opposants) {
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurEsku = opposants.joueurEsku().main().getPaires();
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurAllie = opposants.joueur2equipe1().main().getPaires();
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurEnemie = opposants.joueur1equipe2().main().getPaires();
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurZaku = opposants.joueurZaku().main().getPaires();
 
-    com.montaury.mus.jeu.carte.paires.Paires pairesMeilleurEquipe1 = opposants.joueurEsku().main().getPaires();
-    com.montaury.mus.jeu.carte.paires.Paires pairesMeilleurEquipe2 = opposants.joueurZaku().main().getPaires();
-    Joueur meilleurJoueurEquipe1 =opposants.joueurEsku();
-    Joueur meilleurJoueurEquipe2=opposants.joueurZaku();
+    com.montaury.mus.jeu.carte.paires.Paires meilleurPaireEquie1;
+    com.montaury.mus.jeu.carte.paires.Paires meilleurPaireEquie2;
+    opposants.joueurEsku().main().getPaires();
 
-    if (pairesJoueurEsku.estMeilleureOuEgaleA(pairesJoueurAllie)){
-      pairesMeilleurEquipe1=pairesJoueurEsku;
-    }else {
-      pairesMeilleurEquipe1=pairesJoueurAllie;
+    Joueur meilleurJoueurEquipe1 = opposants.joueurEsku();
+    Joueur meilleurJoueurEquipe2 = opposants.joueurZaku();
+
+    if(peutParticiper(opposants.joueurEsku()) && peutParticiper(opposants.joueur2equipe1()))
+    {
+      //recup le meilleur
+      if (opposants.joueurEsku().main().getPaires().estMeilleureOuEgaleA(opposants.joueur2equipe1().main().getPaires())){
+        meilleurPaireEquie1=opposants.joueurEsku().main().getPaires();
+      }else {
+        meilleurPaireEquie1=opposants.joueur2equipe1().main().getPaires();
+        meilleurJoueurEquipe1=opposants.joueur2equipe1();
+      }
+    }
+    else if(peutParticiper(opposants.joueurEsku()))
+    {
+      //recup paire esku
+      meilleurPaireEquie1 =opposants.joueurEsku().main().getPaires() ;
+    }
+    else
+    {
+      //recup paire j2e1
+      meilleurPaireEquie1 =opposants.joueur2equipe1().main().getPaires() ;
       meilleurJoueurEquipe1=opposants.joueur2equipe1();
     }
 
-    if (pairesJoueurZaku.estMeilleureOuEgaleA(pairesJoueurEnemie)){
-      pairesMeilleurEquipe2=pairesJoueurZaku;
-    }else {
-      pairesMeilleurEquipe2=pairesJoueurEnemie;
+    if(peutParticiper(opposants.joueurZaku()) && peutParticiper(opposants.joueur1equipe2()))
+    {
+      //recup le meilleur
+      if (opposants.joueurZaku().main().getPaires().estMeilleureOuEgaleA(opposants.joueur2equipe1().main().getPaires())){
+        meilleurPaireEquie2 =opposants.joueurZaku().main().getPaires();
+      }else {
+        meilleurPaireEquie2=opposants.joueur1equipe2().main().getPaires();
+        meilleurJoueurEquipe2=opposants.joueur1equipe2();
+      }
+    }
+    else if(peutParticiper(opposants.joueurZaku()))
+    {
+      //recup paire zaku
+      meilleurPaireEquie2 =opposants.joueurZaku().main().getPaires() ;
+    }
+    else
+    {
+      //recup paire j1e2
+      meilleurPaireEquie2 =opposants.joueur1equipe2().main().getPaires() ;
       meilleurJoueurEquipe2=opposants.joueur1equipe2();
     }
-    return pairesMeilleurEquipe1.estMeilleureOuEgaleA(pairesMeilleurEquipe2) ? meilleurJoueurEquipe1 : meilleurJoueurEquipe2;
+
+    return meilleurPaireEquie1.estMeilleureOuEgaleA(meilleurPaireEquie2) ? meilleurJoueurEquipe1 : meilleurJoueurEquipe2;
   }
 
   @Override

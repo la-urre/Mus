@@ -44,6 +44,7 @@ public class Tour {
       Phase.Resultat resultat = phases.next().jouer(affichage, opposants, score);
       resultats.ajouter(resultat);
     } while (phases.hasNext() && score.vainqueur().isEmpty());
+
     resultats.attribuerPointsRestants(score);
   }
 

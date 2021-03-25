@@ -2,24 +2,31 @@ package com.montaury.mus.jeu.equipe;
 
 import com.montaury.mus.jeu.joueur.Joueur;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Opposants {
   private Equipe equipe1;
   private Equipe equipe2;
-  
+  private LinkedList<Joueur> joueursDansLordre;
+
 
   public Opposants(Equipe equipe1, Equipe equipe2) {
     this.equipe1 = equipe1;
     this.equipe2 = equipe2;
+    joueursDansLordre = new LinkedList<Joueur>();
+    joueursDansLordre.add(joueurEsku());
+    joueursDansLordre.add(joueur1equipe2());
+    joueursDansLordre.add(joueur2equipe1());
+    joueursDansLordre.add(joueurZaku());
   }
   // permet de changer celui qui distribue et celui qui parle en premier
   public void tourner() {
-    Equipe equipeTemp = equipe2;
-    equipe2 = equipe1;
-    equipe1 = equipeTemp;
+    Joueur jouerTempon = joueursDansLordre.removeLast();
+    joueursDansLordre.addFirst(jouerTempon);
   }
 
   public Joueur joueurEsku() {
@@ -40,7 +47,7 @@ public class Opposants {
   }
 
   public List<Joueur> dansLOrdre() {
-    return List.of(equipe1.joueur1, equipe2.joueur1, equipe1.joueur2, equipe2.joueur2);
+    return joueursDansLordre;
   }
 
   private static class IteratorInfini implements Iterator<Joueur> {

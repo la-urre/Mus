@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class FauxJeuTest {
   @Test
-  void ne_doit_pas_se_derouler_si_un_seul_des_joueurs_a_le_jeu() {
+  void ne_doit_pas_se_derouler_si_un_equipe_a_que_du_jeu() {
     Opposants opposants = new Opposants(
             new Equipe( unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
                     unJoueurAvec(main(Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE))),
-            new Equipe( unJoueurAvec(main(Carte.AS_EPEE, Carte.DEUX_EPEE, Carte.TROIS_EPEE, Carte.QUATRE_EPEE)),
+            new Equipe( unJoueurAvec(main(Carte.VALET_PIECE, Carte.ROI_COUPE, Carte.CAVALIER_PIECE, Carte.QUATRE_EPEE)),
                     unJoueurAvec(main(Carte.VALET_PIECE, Carte.ROI_COUPE, Carte.CAVALIER_PIECE, Carte.AS_EPEE)))
     );
 
@@ -57,12 +57,12 @@ class FauxJeuTest {
   @Test
   void devrait_faire_gagner_le_joueur_esku_en_cas_d_egalite() {
     Joueur joueur1 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
+    Joueur joueur2 =unJoueurAvec(main(Carte.AS_PIECE, Carte.QUATRE_BATON, Carte.VALET_COUPE, Carte.SIX_BATON));
+    Joueur joueur3 =unJoueurAvec(main(Carte.AS_EPEE, Carte.QUATRE_EPEE, Carte.VALET_EPEE, Carte.SIX_EPEE));
+    Joueur joueur4 = unJoueurAvec(main(Carte.AS_COUPE, Carte.QUATRE_COUPE, Carte.VALET_PIECE, Carte.SIX_PIECE));
     Opposants opposants = new Opposants(
-            new Equipe( joueur1,
-                    unJoueurAvec(main(Carte.AS_PIECE, Carte.QUATRE_BATON, Carte.VALET_COUPE, Carte.SIX_BATON))),
-            new Equipe( unJoueurAvec(main(Carte.AS_EPEE, Carte.QUATRE_EPEE, Carte.VALET_EPEE, Carte.SIX_EPEE)),
-                    unJoueurAvec(main(Carte.AS_COUPE, Carte.QUATRE_COUPE, Carte.VALET_PIECE, Carte.SIX_PIECE)))
-    );
+            new Equipe( joueur1,joueur2),
+            new Equipe(joueur3 ,joueur4));
 
     Joueur vainqueur = new FauxJeu().meilleurParmi(opposants);
 

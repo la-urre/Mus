@@ -90,8 +90,8 @@ class PetitTest {
   @Test
   void devrait_faire_gagner_le_joueur_esku_si_les_deux_mains_sont_egales() {
     Joueur joueur1 = unJoueurAvec(main(Carte.AS_PIECE, Carte.CINQ_PIECE, Carte.CAVALIER_EPEE, Carte.SIX_COUPE));
-    Joueur joueur2 = unJoueurAvec(main(Carte.AS_BATON, Carte.CINQ_EPEE, Carte.CAVALIER_BATON, Carte.SIX_BATON));
-    Joueur joueur3 = unJoueurAvec(main(Carte.AS_PIECE, Carte.CINQ_BATON, Carte.CAVALIER_PIECE, Carte.SIX_PIECE));
+    Joueur joueur2 = unJoueurAvec(main(Carte.ROI_EPEE, Carte.ROI_EPEE, Carte.ROI_EPEE, Carte.ROI_EPEE));
+    Joueur joueur3 = unJoueurAvec(main(Carte.ROI_EPEE, Carte.ROI_EPEE, Carte.ROI_EPEE, Carte.ROI_EPEE));
     Joueur joueur4 = unJoueurAvec(main(Carte.AS_PIECE, Carte.CINQ_COUPE, Carte.CAVALIER_COUPE, Carte.SIX_EPEE));
 
     Equipe equipe1 = new Equipe(joueur1,joueur2);

@@ -55,12 +55,12 @@ class PairesTest {
 
   @Test
   void devrait_faire_gagner_le_joueur_ayant_la_meilleure_paire() {
-    Joueur j2=unJoueurAvec(main(Carte.AS_BATON, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE));
+    Joueur j2=unJoueurAvec(main(Carte.ROI_EPEE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.ROI_EPEE));
     Opposants opposants = new Opposants(
-      new Equipe( unJoueurAvec(main(Carte.DEUX_COUPE, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
+      new Equipe( unJoueurAvec(main(Carte.DEUX_COUPE, Carte.DEUX_COUPE, Carte.VALET_BATON, Carte.SIX_COUPE)),
                   j2),
       new Equipe( unJoueurAvec(main(Carte.DEUX_PIECE, Carte.DEUX_EPEE, Carte.VALET_EPEE, Carte.AS_COUPE)),
-                  unJoueurAvec(main(Carte.ROI_BATON, Carte.TROIS_PIECE, Carte.CINQ_BATON, Carte.AS_EPEE)))
+                  unJoueurAvec(main(Carte.ROI_BATON, Carte.TROIS_PIECE, Carte.TROIS_PIECE, Carte.AS_EPEE)))
     );
 
     Joueur vainqueur = new Paires().meilleurParmi(opposants);

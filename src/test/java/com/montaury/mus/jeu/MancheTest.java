@@ -64,12 +64,13 @@ class MancheTest {
 
     Manche.Resultat resultat = manche.jouer(opposants);
 
-    assertThat(resultat.vainqueur()).isEqualTo(joueur4);
+    assertThat(resultat.vainqueur()).isEqualTo(joueur2);
     assertThat(resultat.pointsVaincu()).isZero();
   }
 
   @Test
   void devrait_changer_l_ordre_des_opposants_a_la_fin_du_tour() {
+
     when(interfaceJoueur1.faireChoixParmi(any())).thenReturn(new Hordago());
     when(interfaceJoueur2.faireChoixParmi(any())).thenReturn(new Kanta());
     when(interfaceJoueur3.faireChoixParmi(any())).thenReturn(new Kanta());

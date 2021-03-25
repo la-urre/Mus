@@ -20,7 +20,7 @@ class GrandTest {
     Equipe equipe1 = new Equipe(joueur1,joueur2);
     Equipe equipe2 = new Equipe(joueur3,joueur4);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(equipe1, equipe2));
+    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(equipe1, equipe2));
     assertThat(vainqueur).isEqualTo(joueur4);
   }
   @Test
@@ -32,7 +32,7 @@ class GrandTest {
     Equipe equipe1 = new Equipe(joueur1,joueur2);
     Equipe equipe2 = new Equipe(joueur3,joueur4);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(equipe1, equipe2));
+    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(equipe1, equipe2));
     assertThat(vainqueur).isEqualTo(joueur3);
   }
   @Test
@@ -44,7 +44,7 @@ class GrandTest {
     Equipe equipe1 = new Equipe(joueur1,joueur2);
     Equipe equipe2 = new Equipe(joueur3,joueur4);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(equipe1, equipe2));
+    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(equipe1, equipe2));
     assertThat(vainqueur).isEqualTo(joueur2);
   }
   @Test
@@ -69,22 +69,21 @@ class GrandTest {
     Equipe equipe1 = new Equipe(joueur1,joueur2);
     Equipe equipe2 = new Equipe(joueur3,joueur4);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(equipe1, equipe2));
+    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(equipe1, equipe2));
 
     assertThat(vainqueur).isEqualTo(joueur4);
   }
 
   @Test
-  void devrait_faire_gagner_le_joueur_esku_si_les_deux_mains_sont_egales() {
+  void devrait_faire_gagner_le_joueur_esku_si_les_quatre_mains_sont_egales() {
     Joueur joueur1 = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
-    Joueur joueur2 = unJoueurAvec(main(Carte.AS_PIECE, Carte.QUATRE_BATON, Carte.VALET_PIECE, Carte.SIX_EPEE));
-    Joueur joueur3 = unJoueurAvec(main(Carte.AS_EPEE, Carte.QUATRE_COUPE, Carte.VALET_COUPE, Carte.SIX_PIECE));
+    Joueur joueur2 = unJoueurAvec(main(Carte.AS_EPEE, Carte.AS_EPEE, Carte.AS_EPEE, Carte.AS_EPEE));
+    Joueur joueur3 = unJoueurAvec(main(Carte.AS_EPEE, Carte.AS_EPEE, Carte.AS_EPEE, Carte.AS_EPEE));
     Joueur joueur4 = unJoueurAvec(main(Carte.AS_COUPE, Carte.QUATRE_EPEE, Carte.VALET_EPEE, Carte.SIX_BATON));
     Equipe equipe1 = new Equipe(joueur1,joueur2);
     Equipe equipe2 = new Equipe(joueur3,joueur4);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(equipe1, equipe2));
-
+    Joueur vainqueur = new Grand().meilleurParmi(new Opposants(equipe1, equipe2));
 
     assertThat(vainqueur).isEqualTo(joueur1);
   }
