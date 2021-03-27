@@ -1,52 +1,53 @@
 package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.carte.Carte;
-import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.joueur.Main;
 import org.junit.jupiter.api.Test;
 
 import static com.montaury.mus.jeu.joueur.Fixtures.main;
-import static com.montaury.mus.jeu.joueur.Fixtures.unJoueurAvec;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PetitTest {
+
   @Test
   void devrait_faire_gagner_le_joueur_esku_s_il_a_la_plus_petite_carte() {
-    Joueur joueurEsku = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.AS_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE));
+    Main mainJoueurEsku = main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.AS_COUPE);
+    Main mainJoueurZaku = main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.SIX_PIECE);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(joueurEsku, joueurZaku));
+    boolean mainEskuEstMeilleure = petit.mainEskuEstMeilleure(mainJoueurEsku, mainJoueurZaku);
 
-    assertThat(vainqueur).isEqualTo(joueurEsku);
+    assertThat(mainEskuEstMeilleure).isTrue();
   }
 
   @Test
   void devrait_faire_gagner_le_joueur_zaku_s_il_a_la_plus_petite_carte() {
-    Joueur joueurEsku = unJoueurAvec(main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.AS_PIECE));
+    Main mainJoueurEsku = main(Carte.DEUX_PIECE, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE);
+    Main mainJoueurZaku = main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.AS_PIECE);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(joueurEsku, joueurZaku));
+    boolean mainEskuEstMeilleure = petit.mainEskuEstMeilleure(mainJoueurEsku, mainJoueurZaku);
 
-    assertThat(vainqueur).isEqualTo(joueurZaku);
+    assertThat(mainEskuEstMeilleure).isFalse();
   }
 
   @Test
   void devrait_faire_gagner_le_joueur_qui_a_la_seconde_plus_petite_carte_si_la_premiere_est_egale() {
-    Joueur joueurEsku = unJoueurAvec(main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.DEUX_BATON, Carte.VALET_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE));
+    Main mainJoueurEsku = main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE);
+    Main mainJoueurZaku = main(Carte.DEUX_BATON, Carte.VALET_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(joueurEsku, joueurZaku));
+    boolean mainEskuEstMeilleure = petit.mainEskuEstMeilleure(mainJoueurEsku, mainJoueurZaku);
 
-    assertThat(vainqueur).isEqualTo(joueurZaku);
+    assertThat(mainEskuEstMeilleure).isFalse();
   }
 
   @Test
   void devrait_faire_gagner_le_joueur_esku_si_les_deux_mains_sont_egales() {
-    Joueur joueurEsku = unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE));
-    Joueur joueurZaku = unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE));
+    Main mainJoueurEsku = main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE);
+    Main mainJoueurZaku = main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE);
 
-    Joueur vainqueur = new Petit().meilleurParmi(new Opposants(joueurEsku, joueurZaku));
+    boolean mainEskuEstMeilleure = petit.mainEskuEstMeilleure(mainJoueurEsku, mainJoueurZaku);
 
-    assertThat(vainqueur).isEqualTo(joueurEsku);
+    assertThat(mainEskuEstMeilleure).isTrue();
   }
+
+  private final Petit petit = new Petit();
 }

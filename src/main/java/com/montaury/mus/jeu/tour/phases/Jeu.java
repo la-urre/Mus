@@ -2,7 +2,7 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
-import com.montaury.mus.jeu.joueur.Opposants;
+
 import java.util.List;
 
 public class Jeu extends Phase {
@@ -23,14 +23,12 @@ public class Jeu extends Phase {
   }
 
   @Override
-  protected Joueur meilleurParmi(Opposants opposants) {
-    return rangDuJeu(opposants.joueurEsku()) <= rangDuJeu(opposants.joueurZaku()) ?
-      opposants.joueurEsku() :
-      opposants.joueurZaku();
+  protected boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku) {
+    return rangDuJeu(mainJoueurEsku) <= rangDuJeu(mainJoueurZaku);
   }
 
-  private int rangDuJeu(Joueur joueur) {
-    return RANG_JEUX.indexOf(joueur.main().pointsPourJeu());
+  private int rangDuJeu(Main main) {
+    return RANG_JEUX.indexOf(main.pointsPourJeu());
   }
 
   @Override

@@ -2,7 +2,6 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
-import com.montaury.mus.jeu.joueur.Opposants;
 
 public class Paires extends Phase {
   public Paires() {
@@ -15,10 +14,10 @@ public class Paires extends Phase {
   }
 
   @Override
-  protected Joueur meilleurParmi(Opposants opposants) {
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurEsku = opposants.joueurEsku().main().getPaires();
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurZaku = opposants.joueurZaku().main().getPaires();
-    return pairesJoueurEsku.estMeilleureOuEgaleA(pairesJoueurZaku) ? opposants.joueurEsku() : opposants.joueurZaku();
+  protected boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku) {
+    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurEsku = mainJoueurEsku.getPaires();
+    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurZaku = mainJoueurZaku.getPaires();
+    return pairesJoueurEsku.estMeilleureOuEgaleA(pairesJoueurZaku);
   }
 
   @Override

@@ -69,7 +69,11 @@ public abstract class Phase {
     return true;
   }
 
-  protected abstract Joueur meilleurParmi(Opposants opposants);
+  private Joueur meilleurParmi(Opposants opposants) {
+    return mainEskuEstMeilleure(opposants.joueurEsku().main(), opposants.joueurZaku().main()) ? opposants.joueurEsku() : opposants.joueurZaku();
+  }
+
+  protected abstract boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku);
 
   protected int pointsBonus(Joueur vainqueur) {
     return 0;
