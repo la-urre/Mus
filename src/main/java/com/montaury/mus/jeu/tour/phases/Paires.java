@@ -1,6 +1,7 @@
 package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.joueur.Joueur;
+import com.montaury.mus.jeu.joueur.Main;
 import com.montaury.mus.jeu.joueur.Opposants;
 
 public class Paires extends Phase {
@@ -9,8 +10,8 @@ public class Paires extends Phase {
   }
 
   @Override
-  protected boolean peutParticiper(Joueur joueur) {
-    return joueur.main().aDesPaires();
+  protected boolean peutParticiper(Main main) {
+    return main.aDesPaires();
   }
 
   @Override

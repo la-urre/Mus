@@ -3,6 +3,7 @@ package com.montaury.mus.jeu.tour.phases;
 import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
+import com.montaury.mus.jeu.joueur.Main;
 import com.montaury.mus.jeu.joueur.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
 import com.montaury.mus.jeu.tour.phases.dialogue.DialogueTermine;
@@ -56,15 +57,15 @@ public abstract class Phase {
 
   public List<Joueur> participantsParmi(Opposants opposants) {
     return opposants.dansLOrdre().stream()
-      .filter(this::peutParticiper)
+      .filter(joueur -> peutParticiper(joueur.main()))
       .collect(Collectors.toList());
   }
 
   public final boolean peutSeDerouler(Opposants opposants) {
-    return peutParticiper(opposants.joueurEsku()) && peutParticiper(opposants.joueurZaku());
+    return peutParticiper(opposants.joueurEsku().main()) && peutParticiper(opposants.joueurZaku().main());
   }
 
-  protected boolean peutParticiper(Joueur joueur) {
+  protected boolean peutParticiper(Main main) {
     return true;
   }
 

@@ -1,6 +1,7 @@
 package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.joueur.Joueur;
+import com.montaury.mus.jeu.joueur.Main;
 import com.montaury.mus.jeu.joueur.Opposants;
 
 import static com.montaury.mus.jeu.tour.phases.Jeu.aLeJeu;
@@ -11,8 +12,8 @@ public class FauxJeu extends Phase {
   }
 
   @Override
-  protected boolean peutParticiper(Joueur joueur) {
-    return !aLeJeu(joueur);
+  protected boolean peutParticiper(Main main) {
+    return !aLeJeu(main);
   }
 
   @Override

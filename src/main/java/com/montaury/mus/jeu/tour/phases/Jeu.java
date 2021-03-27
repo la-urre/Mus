@@ -1,6 +1,7 @@
 package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.joueur.Joueur;
+import com.montaury.mus.jeu.joueur.Main;
 import com.montaury.mus.jeu.joueur.Opposants;
 import java.util.List;
 
@@ -12,13 +13,13 @@ public class Jeu extends Phase {
     super("Jeu");
   }
 
-  public static boolean aLeJeu(Joueur joueur) {
-    return RANG_JEUX.contains(joueur.main().pointsPourJeu());
+  public static boolean aLeJeu(Main main) {
+    return RANG_JEUX.contains(main.pointsPourJeu());
   }
 
   @Override
-  protected boolean peutParticiper(Joueur joueur) {
-    return aLeJeu(joueur);
+  protected boolean peutParticiper(Main main) {
+    return aLeJeu(main);
   }
 
   @Override
