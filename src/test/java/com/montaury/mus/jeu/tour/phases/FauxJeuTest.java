@@ -3,7 +3,6 @@ package com.montaury.mus.jeu.tour.phases;
 import com.montaury.mus.jeu.carte.Carte;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
-import com.montaury.mus.jeu.joueur.Opposants;
 import org.junit.jupiter.api.Test;
 
 import static com.montaury.mus.jeu.joueur.Fixtures.main;
@@ -13,27 +12,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FauxJeuTest {
 
   @Test
-  void ne_doit_pas_se_derouler_si_un_seul_des_joueurs_a_le_jeu() {
-    Opposants opposants = new Opposants(
-      unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
-      unJoueurAvec(main(Carte.VALET_PIECE, Carte.CAVALIER_PIECE, Carte.ROI_BATON, Carte.AS_PIECE))
-    );
+  void ne_doit_pas_faire_participer_un_joueur_ayant_le_jeu() {
+    Main main = main(Carte.VALET_PIECE, Carte.CAVALIER_PIECE, Carte.ROI_BATON, Carte.AS_PIECE);
 
-    boolean peutSeDerouler = fauxJeu.peutSeDerouler(opposants);
+    boolean peutParticiper = fauxJeu.peutParticiper(main);
 
-    assertThat(peutSeDerouler).isFalse();
+    assertThat(peutParticiper).isFalse();
   }
 
   @Test
-  void doit_se_derouler_si_personne_n_a_le_jeu() {
-    Opposants opposants = new Opposants(
-      unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
-      unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE))
-    );
+  void doit_faire_participer_un_joueur_n_ayant_pas_le_jeu() {
+    Main main = main(Carte.ROI_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE);
 
-    boolean peutSeDerouler = fauxJeu.peutSeDerouler(opposants);
+    boolean peutParticiper = fauxJeu.peutParticiper(main);
 
-    assertThat(peutSeDerouler).isTrue();
+    assertThat(peutParticiper).isTrue();
   }
 
   @Test

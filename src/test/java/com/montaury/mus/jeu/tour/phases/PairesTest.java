@@ -3,7 +3,6 @@ package com.montaury.mus.jeu.tour.phases;
 import com.montaury.mus.jeu.carte.Carte;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
-import com.montaury.mus.jeu.joueur.Opposants;
 import org.junit.jupiter.api.Test;
 
 import static com.montaury.mus.jeu.joueur.Fixtures.main;
@@ -13,39 +12,39 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PairesTest {
 
   @Test
-  void ne_doit_pas_se_derouler_si_personne_n_a_de_paires() {
-    Opposants opposants = new Opposants(
-      unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
-      unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE))
-    );
+  void ne_doit_pas_faire_participer_un_joueur_n_ayant_pas_de_paire() {
+    Main main = main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE);
 
-    boolean peutSeDerouler = paires.peutSeDerouler(opposants);
+    boolean peutParticiper = paires.peutParticiper(main);
 
-    assertThat(peutSeDerouler).isFalse();
+    assertThat(peutParticiper).isFalse();
   }
 
   @Test
-  void ne_doit_pas_se_derouler_si_un_des_joueurs_n_a_pas_de_paires() {
-    Opposants opposants = new Opposants(
-      unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE)),
-      unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.SIX_EPEE, Carte.AS_PIECE))
-    );
+  void doit_faire_participer_un_joueur_ayant_des_paires_simples() {
+    Main main = main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.SIX_EPEE, Carte.AS_PIECE);
 
-    boolean peutSeDerouler = paires.peutSeDerouler(opposants);
+    boolean peutParticiper = paires.peutParticiper(main);
 
-    assertThat(peutSeDerouler).isFalse();
+    assertThat(peutParticiper).isTrue();
   }
 
   @Test
-  void devrait_se_derouler_si_les_deux_joueurs_ont_des_paires() {
-    Opposants opposants = new Opposants(
-      unJoueurAvec(main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.QUATRE_COUPE)),
-      unJoueurAvec(main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.SIX_EPEE, Carte.AS_PIECE))
-    );
+  void doit_faire_participer_un_joueur_ayant_des_meds() {
+    Main main = main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.SIX_EPEE, Carte.SIX_BATON);
 
-    boolean peutSeDerouler = paires.peutSeDerouler(opposants);
+    boolean peutParticiper = paires.peutParticiper(main);
 
-    assertThat(peutSeDerouler).isTrue();
+    assertThat(peutParticiper).isTrue();
+  }
+
+  @Test
+  void doit_faire_participer_un_joueur_ayant_des_doubles() {
+    Main main = main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.SIX_EPEE, Carte.VALET_BATON);
+
+    boolean peutParticiper = paires.peutParticiper(main);
+
+    assertThat(peutParticiper).isTrue();
   }
 
   @Test
@@ -64,7 +63,7 @@ class PairesTest {
 
     int bonus = paires.pointsBonus(joueur);
 
-    assertThat(bonus).isEqualTo(1);
+    assertThat(bonus).isOne();
   }
 
   @Test
