@@ -1,6 +1,5 @@
 package com.montaury.mus.jeu.tour.phases;
 
-import com.montaury.mus.jeu.carte.Carte;
 import com.montaury.mus.jeu.carte.Defausse;
 import com.montaury.mus.jeu.carte.Paquet;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
@@ -21,7 +20,7 @@ public class Mus {
   }
 
   public void jouer(Opposants opposants) {
-    List<Joueur> joueursDansLOrdre = opposants.dansLOrdre();
+    var joueursDansLOrdre = opposants.dansLOrdre();
     joueursDansLOrdre.forEach(joueur -> joueur.main().jeterTout());
 
     boolean mus;
@@ -52,7 +51,7 @@ public class Mus {
   }
 
   private void allerMus(Joueur joueur) {
-    List<Carte> cartesAJeter = joueur.interfaceJoueur.cartesAJeter();
+    var cartesAJeter = joueur.interfaceJoueur.cartesAJeter();
     joueur.main().retirer(cartesAJeter);
     defausse.jeter(cartesAJeter);
   }

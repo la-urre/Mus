@@ -15,8 +15,8 @@ public class Paires extends Phase {
 
   @Override
   protected boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku) {
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurEsku = mainJoueurEsku.getPaires();
-    com.montaury.mus.jeu.carte.paires.Paires pairesJoueurZaku = mainJoueurZaku.getPaires();
+    var pairesJoueurEsku = mainJoueurEsku.getPaires();
+    var pairesJoueurZaku = mainJoueurZaku.getPaires();
     return pairesJoueurEsku.estMeilleureOuEgaleA(pairesJoueurZaku);
   }
 

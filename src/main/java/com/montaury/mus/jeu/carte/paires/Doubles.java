@@ -16,7 +16,7 @@ public class Doubles extends Paires {
     if (!(paires instanceof Doubles)) {
       return true;
     }
-    Doubles autresDoubles = (Doubles) paires;
+    var autresDoubles = (Doubles) paires;
     if (meilleurePaire.valeur().valeur() > autresDoubles.meilleurePaire.valeur().valeur()) {
       return true;
     }

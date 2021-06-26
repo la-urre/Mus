@@ -28,30 +28,30 @@ public abstract class Phase {
 
   public final Resultat jouer(AffichageEvenementsDeJeu affichage, Opposants opposants, Manche.Score score) {
     affichage.nouvellePhase(this);
-    List<Joueur> joueurs = participantsParmi(opposants);
-    if (joueurs.isEmpty()) {
+    var participants = participantsParmi(opposants);
+    if (participants.isEmpty()) {
       return Resultat.nonJouable();
     }
-    if (joueurs.size() == 1) {
-      return Resultat.termine(joueurs.get(0), pointsBonus(joueurs.get(0)));
+    if (participants.size() == 1) {
+      return Resultat.termine(participants.get(0), pointsBonus(participants.get(0)));
     }
-    DialogueTermine dialogue = new Dialogue().derouler(affichage, opposants);
+    var dialogue = new Dialogue().derouler(affichage, opposants);
     return conclure(dialogue, score, opposants);
   }
 
   private Resultat conclure(DialogueTermine dialogue, Manche.Score score, Opposants opposants) {
     if (dialogue.estConcluPar(TIRA)) {
-      Joueur joueurEmportantLaMise = dialogue.avantDernierJoueur();
+      var joueurEmportantLaMise = dialogue.avantDernierJoueur();
       score.scorer(joueurEmportantLaMise, dialogue.pointsEngages());
       return Resultat.termine(joueurEmportantLaMise, pointsBonus(joueurEmportantLaMise));
     }
     if (dialogue.estConcluPar(KANTA)) {
-      Joueur vainqueur = meilleurParmi(opposants);
+      var vainqueur = meilleurParmi(opposants);
       score.remporterManche(vainqueur);
       return Resultat.termine(vainqueur, 0);
     }
-    Joueur vainqueurPhase = meilleurParmi(opposants);
-    int bonus = pointsBonus(vainqueurPhase);
+    var vainqueurPhase = meilleurParmi(opposants);
+    var bonus = pointsBonus(vainqueurPhase);
     return Resultat.suspendu(vainqueurPhase, dialogue.estConcluPar(PASO) && bonus != 0 ? 0 : dialogue.pointsEngages(), bonus);
   }
 

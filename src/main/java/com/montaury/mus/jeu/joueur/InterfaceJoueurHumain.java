@@ -22,13 +22,13 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
 
   @Override
   public boolean veutAllerMus() {
-    println("Souhaitez-vous aller mus ? (o/n)");
+    afficherLigne("Souhaitez-vous aller mus ? (o/n)");
     return scanner.next().equals("o");
   }
 
   @Override
   public List<Carte> cartesAJeter() {
-    println("Veuillez saisir les cartes à jeter (ex: 1,3) :");
+    afficherLigne("Veuillez saisir les cartes à jeter (ex: 1,3) :");
     String aJeter = scanner.next();
     return Arrays.stream(aJeter.split(","))
       .mapToInt(Integer::parseInt)
@@ -38,8 +38,8 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
 
   @Override
   public Choix faireChoixParmi(List<TypeChoix> choixPossibles) {
-    print("Faites un choix entre (en toutes lettres): ");
-    println(choixPossibles.stream().map(TypeChoix::nom).collect(Collectors.joining(" | ")));
+    afficher("Faites un choix entre (en toutes lettres): ");
+    afficherLigne(choixPossibles.stream().map(TypeChoix::nom).collect(Collectors.joining(" | ")));
     String choix = scanner.next();
     if (choix.equalsIgnoreCase("Paso")) return new Paso();
     if (choix.equalsIgnoreCase("Imido")) return new Imido();
@@ -56,11 +56,11 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
     this.main = main;
   }
 
-  private void println(String string) {
+  private void afficherLigne(String string) {
     System.out.println(string);
   }
 
-  private void print(String string) {
+  private void afficher(String string) {
     System.out.print(string);
   }
 }

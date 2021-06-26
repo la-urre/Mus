@@ -15,36 +15,36 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
 
   @Override
   public void nouvellePartie() {
-    println("Nouvelle partie");
+    afficher("Nouvelle partie");
   }
 
   @Override
   public void nouvelleManche() {
-    println("Nouvelle manche");
+    afficher("Nouvelle manche");
   }
 
   @Override
   public void mancheTerminee(Partie.Score score) {
-    println("Manche terminée");
-    score.resultatManches().forEach(manche -> println("Vainqueur : " + manche.vainqueur().nom() + ", score du perdant : " + manche.pointsVaincu()));
+    afficher("Manche terminée");
+    score.resultatManches().forEach(manche -> afficher("Vainqueur : " + manche.vainqueur().nom() + ", score du perdant : " + manche.pointsVaincu()));
   }
 
   @Override
   public void nouveauTour(Opposants opposants) {
-    println(opposants.joueurEsku().nom() + " est esku");
+    afficher(opposants.joueurEsku().nom() + " est esku");
   }
 
   @Override
   public void tourTermine(Opposants opposants, Manche.Score score) {
-    println("Tour terminé");
+    afficher("Tour terminé");
     opposants.dansLOrdre().forEach(this::afficherMain);
-    score.scoreParJoueur().forEach((key, value) -> println("Score " + key.nom() + ": " + value));
-    println();
+    score.scoreParJoueur().forEach((key, value) -> afficher("Score " + key.nom() + ": " + value));
+    sautLigne();
   }
 
   @Override
   public void choixFait(Joueur joueur, Choix choix) {
-    println(joueur.nom() + ": " + description(choix));
+    afficher(joueur.nom() + ": " + description(choix));
   }
 
   private static String description(Choix choix) {
@@ -54,32 +54,32 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
   @Override
   public void nouvelleMain(Joueur joueur) {
     if (joueur == joueurCourant) {
-      println("Votre main est: ");
+      afficher("Votre main est: ");
       afficherMain(joueur);
-      println();
+      sautLigne();
     }
   }
 
   private void afficherMain(Joueur joueur) {
-    println(joueur.nom() + ": " + joueur.main().cartesDuPlusGrandAuPlusPetit().stream().map(carte -> carte.valeur() + " " + carte.type()).collect(Collectors.joining(" | ")));
+    afficher(joueur.nom() + ": " + joueur.main().cartesDuPlusGrandAuPlusPetit().stream().map(carte -> carte.valeur() + " " + carte.type()).collect(Collectors.joining(" | ")));
   }
 
   @Override
   public void nouvellePhase(Phase phase) {
-    println("Nouvelle phase: " + phase.nom());
+    afficher("Nouvelle phase: " + phase.nom());
   }
 
   @Override
   public void partieTerminee(Partie.Resultat resultat) {
-    println("La partie est terminée !");
-    println("Vainqueur: " + resultat.vainqueur());
+    afficher("La partie est terminée !");
+    afficher("Vainqueur: " + resultat.vainqueur());
   }
 
-  private void println(String string) {
+  private void afficher(String string) {
     System.out.println(string);
   }
 
-  private void println() {
+  private void sautLigne() {
     System.out.println();
   }
 }

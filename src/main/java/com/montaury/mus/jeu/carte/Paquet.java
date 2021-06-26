@@ -24,12 +24,12 @@ public class Paquet {
 
   public List<Carte> tirer(int nbCartes) {
     if (cartes.size() < nbCartes) {
-      List<Carte> cartesDefaussees = this.defausse.reprendreCartes();
+      var cartesDefaussees = this.defausse.reprendreCartes();
       shuffle(cartesDefaussees);
       cartes.addAll(cartesDefaussees);
     }
-    List<Carte> tirees = new ArrayList<>();
-    for (int i = 0; i < nbCartes; i++) {
+    var tirees = new ArrayList<Carte>();
+    for (var i = 0; i < nbCartes; i++) {
       tirees.add(cartes.poll());
     }
     return tirees;

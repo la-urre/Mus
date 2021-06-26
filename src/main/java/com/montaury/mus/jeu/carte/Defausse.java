@@ -11,7 +11,7 @@ public class Defausse {
   }
 
   public List<Carte> reprendreCartes() {
-    List<Carte> cartesDefaussees = new ArrayList<>(this.cartes);
+    var cartesDefaussees = new ArrayList<>(this.cartes);
     this.cartes.clear();
     return cartesDefaussees;
   }

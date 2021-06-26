@@ -15,8 +15,8 @@ public class Dialogue {
   public final DialogueTermine derouler(AffichageEvenementsDeJeu affichage, Opposants opposants) {
     Iterator<Joueur> iteratorJoueur = opposants.itererDansLOrdre();
     do {
-      Joueur parlant = iteratorJoueur.next();
-      Choix choixJoueur = parlant.interfaceJoueur.faireChoixParmi(prochainsChoixPossibles());
+      var parlant = iteratorJoueur.next();
+      var choixJoueur = parlant.interfaceJoueur.faireChoixParmi(prochainsChoixPossibles());
       affichage.choixFait(parlant, choixJoueur);
       ajouter(choixJoueur, parlant);
     }

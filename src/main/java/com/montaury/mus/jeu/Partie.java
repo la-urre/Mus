@@ -18,10 +18,10 @@ public class Partie {
 
   public Resultat jouer(Opposants opposants) {
     affichage.nouvellePartie();
-    Partie.Score score = new Partie.Score(opposants);
+    var score = new Partie.Score(opposants);
     Optional<Joueur> vainqueur;
     do {
-      Manche.Resultat resultat = new Manche(affichage).jouer(opposants);
+      var resultat = new Manche(affichage).jouer(opposants);
       vainqueur = score.enregistrer(resultat);
       affichage.mancheTerminee(score);
     } while (vainqueur.isEmpty());

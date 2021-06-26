@@ -1,10 +1,6 @@
 package com.montaury.mus.jeu.tour.phases;
 
-import com.montaury.mus.jeu.carte.Carte;
-import com.montaury.mus.jeu.carte.ValeurCarte;
 import com.montaury.mus.jeu.joueur.Main;
-
-import java.util.List;
 
 import static com.montaury.mus.jeu.carte.ValeurCarte.Comparaison.PLUS_GRANDE;
 import static com.montaury.mus.jeu.carte.ValeurCarte.Comparaison.PLUS_PETITE;
@@ -16,15 +12,15 @@ public class Petit extends Phase {
 
   @Override
   protected boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku) {
-    List<Carte> cartesJoueurEsku = mainJoueurEsku.cartesDuPlusGrandAuPlusPetit();
-    List<Carte> cartesJoueurZaku = mainJoueurZaku.cartesDuPlusGrandAuPlusPetit();
+    var cartesJoueurEsku = mainJoueurEsku.cartesDuPlusGrandAuPlusPetit();
+    var cartesJoueurZaku = mainJoueurZaku.cartesDuPlusGrandAuPlusPetit();
 
     for (int i = Main.TAILLE - 1; i >= 0; i--) {
-      ValeurCarte.Comparaison compare = cartesJoueurEsku.get(i).comparerAvec(cartesJoueurZaku.get(i));
-      if (compare == PLUS_PETITE) {
+      var comparaison = cartesJoueurEsku.get(i).comparerAvec(cartesJoueurZaku.get(i));
+      if (comparaison == PLUS_PETITE) {
         return true;
       }
-      if (compare == PLUS_GRANDE) {
+      if (comparaison == PLUS_GRANDE) {
         return false;
       }
     }

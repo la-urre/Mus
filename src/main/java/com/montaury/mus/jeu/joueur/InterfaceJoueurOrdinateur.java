@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class InterfaceJoueurOrdinateur implements InterfaceJoueur {
   private Main main;
-  private Random random = new Random();
+  private final Random random = new Random();
 
   @Override
   public void nouvelleMain(Main main) {
@@ -35,7 +35,7 @@ public class InterfaceJoueurOrdinateur implements InterfaceJoueur {
 
   @Override
   public Choix faireChoixParmi(List<TypeChoix> choixPossibles) {
-    TypeChoix typeChoix = choixPossibles.get(random.nextInt(choixPossibles.size()));
+    var typeChoix = choixPossibles.get(random.nextInt(choixPossibles.size()));
     if (typeChoix == TypeChoix.PASO) return new Paso();
     if (typeChoix == TypeChoix.IMIDO) return new Imido();
     if (typeChoix == TypeChoix.HORDAGO) return new Hordago();

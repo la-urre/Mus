@@ -13,7 +13,7 @@ public class Opposants {
   }
 
   public void tourner() {
-    Joueur tmp = joueurEsku;
+    var tmp = joueurEsku;
     joueurEsku = joueurZaku;
     joueurZaku = tmp;
   }

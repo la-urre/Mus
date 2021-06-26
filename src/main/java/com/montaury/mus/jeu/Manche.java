@@ -17,7 +17,7 @@ public class Manche {
 
   public Resultat jouer(Opposants opposants) {
     affichage.nouvelleManche();
-    Score score = new Score(opposants);
+    var score = new Score(opposants);
     do {
       new Tour(affichage).jouer(opposants, score);
       affichage.tourTermine(opposants, score);

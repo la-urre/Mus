@@ -29,13 +29,13 @@ public class Main {
   }
 
   public List<Carte> cartesDuPlusGrandAuPlusPetit() {
-    ArrayList<Carte> cartesTriees = new ArrayList<>(this.cartes);
+    var cartesTriees = new ArrayList<>(this.cartes);
     cartesTriees.sort((c1, c2) -> c2.comparerAvec(c1).valeurComparator());
     return cartesTriees;
   }
 
   public Paires getPaires() {
-    List<Paires> paires = cartes.stream()
+    var paires = cartes.stream()
       .collect(Collectors.groupingBy(Carte::valeurCarte))
       .entrySet().stream().filter(groupe -> groupe.getValue().size() > 1)
       .map(groupe -> creerPaires(groupe.getKey(), groupe.getValue().size()))
