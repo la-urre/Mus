@@ -3,9 +3,8 @@ package com.montaury.mus.jeu;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.InterfaceJoueur;
 import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
-import com.montaury.mus.jeu.tour.phases.dialogue.Hordago;
-import com.montaury.mus.jeu.tour.phases.dialogue.Kanta;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Kanta;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

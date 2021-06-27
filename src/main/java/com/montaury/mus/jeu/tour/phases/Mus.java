@@ -4,8 +4,8 @@ import com.montaury.mus.jeu.carte.Defausse;
 import com.montaury.mus.jeu.carte.Paquet;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
-import com.montaury.mus.jeu.tour.phases.dialogue.Mintza;
+import com.montaury.mus.jeu.Opposants;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Mintza;
 import java.util.List;
 
 public class Mus {
@@ -42,7 +42,7 @@ public class Mus {
   private boolean veulentAllerMus(AffichageEvenementsDeJeu affichage, List<Joueur> joueurs) {
     for (Joueur joueur : joueurs) {
       boolean mus = joueur.interfaceJoueur.veutAllerMus();
-      affichage.choixFait(joueur, mus ? new com.montaury.mus.jeu.tour.phases.dialogue.Mus() : new Mintza());
+      affichage.choixFait(joueur, mus ? new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus() : new Mintza());
       if (!mus) {
         return false;
       }

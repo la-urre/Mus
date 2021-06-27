@@ -4,16 +4,14 @@ import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
-import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
-import com.montaury.mus.jeu.tour.phases.dialogue.DialogueTermine;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.montaury.mus.jeu.tour.phases.dialogue.TypeChoix.KANTA;
-import static com.montaury.mus.jeu.tour.phases.dialogue.TypeChoix.PASO;
-import static com.montaury.mus.jeu.tour.phases.dialogue.TypeChoix.TIRA;
+import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.KANTA;
+import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.PASO;
+import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.TIRA;
 
 public abstract class Phase {
   private final String nom;
@@ -29,44 +27,52 @@ public abstract class Phase {
   public final Resultat jouer(AffichageEvenementsDeJeu affichage, Opposants opposants, Manche.Score score) {
     affichage.nouvellePhase(this);
     var participants = participantsParmi(opposants);
-    if (participants.isEmpty()) {
-      return Resultat.nonJouable();
+    if (participants.aucun()) {
+      return Phase.Resultat.nonJouable();
     }
-    if (participants.size() == 1) {
-      return Resultat.termine(participants.get(0), pointsBonus(participants.get(0)));
+    if (participants.estUnique()) {
+      Joueur premier = participants.premier();
+      return Phase.Resultat.termine(premier, pointsBonus(premier));
     }
-    var dialogue = new Dialogue().derouler(affichage, opposants);
-    return conclure(dialogue, score, opposants);
+    var resultat = new Dialogue(affichage).derouler(participants);
+    return conclure(resultat, score, participants);
   }
 
-  private Resultat conclure(DialogueTermine dialogue, Manche.Score score, Opposants opposants) {
-    if (dialogue.estConcluPar(TIRA)) {
-      var joueurEmportantLaMise = dialogue.avantDernierJoueur();
-      score.scorer(joueurEmportantLaMise, dialogue.pointsEngages());
-      return Resultat.termine(joueurEmportantLaMise, pointsBonus(joueurEmportantLaMise));
+  private Resultat conclure(Dialogue.Recapitulatif recapitulatifDialogue, Manche.Score score, Participants participants) {
+    if (recapitulatifDialogue.terminePar(TIRA)) {
+      var joueurEmportantLaMise = recapitulatifDialogue.dernierJoueurAyantMise();
+      score.scorer(joueurEmportantLaMise, recapitulatifDialogue.pointsEngages());
+      return Phase.Resultat.termine(joueurEmportantLaMise, pointsBonus(joueurEmportantLaMise));
     }
-    if (dialogue.estConcluPar(KANTA)) {
-      var vainqueur = meilleurParmi(opposants);
+    var vainqueur = meilleurParmi(participants);
+    if (recapitulatifDialogue.terminePar(KANTA)) {
       score.remporterManche(vainqueur);
-      return Resultat.termine(vainqueur, 0);
+      return Phase.Resultat.termine(vainqueur, 0);
     }
-    var vainqueurPhase = meilleurParmi(opposants);
-    var bonus = pointsBonus(vainqueurPhase);
-    return Resultat.suspendu(vainqueurPhase, dialogue.estConcluPar(PASO) && bonus != 0 ? 0 : dialogue.pointsEngages(), bonus);
+    var bonus = pointsBonus(vainqueur);
+    return Phase.Resultat.suspendu(vainqueur, recapitulatifDialogue.terminePar(PASO) && bonus != 0 ? 0 : recapitulatifDialogue.pointsEngages(), bonus);
   }
 
-  public List<Joueur> participantsParmi(Opposants opposants) {
-    return opposants.dansLOrdre().stream()
+  public Participants participantsParmi(Opposants opposants) {
+    return new Participants(opposants.dansLOrdre().stream()
       .filter(joueur -> peutParticiper(joueur.main()))
-      .collect(Collectors.toList());
+      .collect(Collectors.toList()));
   }
 
   protected boolean peutParticiper(Main main) {
     return true;
   }
 
-  private Joueur meilleurParmi(Opposants opposants) {
-    return mainEskuEstMeilleure(opposants.joueurEsku().main(), opposants.joueurZaku().main()) ? opposants.joueurEsku() : opposants.joueurZaku();
+  private Joueur meilleurParmi(Participants participants) {
+    Joueur meilleur = null;
+    for (Joueur joueur : participants.dansLOrdre()) {
+      meilleur = meilleur == null ? joueur : meilleurEntre(meilleur, joueur);
+    }
+    return meilleur;
+  }
+
+  private Joueur meilleurEntre(Joueur joueurPlaceAvant, Joueur joueurPlaceApres) {
+    return mainEskuEstMeilleure(joueurPlaceAvant.main(), joueurPlaceApres.main()) ? joueurPlaceAvant : joueurPlaceApres;
   }
 
   protected abstract boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku);

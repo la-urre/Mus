@@ -3,13 +3,11 @@ package com.montaury.mus.jeu;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.InterfaceJoueur;
 import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
-import com.montaury.mus.jeu.tour.phases.dialogue.Gehiago;
-import com.montaury.mus.jeu.tour.phases.dialogue.Hordago;
-import com.montaury.mus.jeu.tour.phases.dialogue.Imido;
-import com.montaury.mus.jeu.tour.phases.dialogue.Kanta;
-import com.montaury.mus.jeu.tour.phases.dialogue.Paso;
-import com.montaury.mus.jeu.tour.phases.dialogue.Tira;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Gehiago;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Imido;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Kanta;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Tira;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

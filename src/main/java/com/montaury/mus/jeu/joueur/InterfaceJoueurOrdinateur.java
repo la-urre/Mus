@@ -1,15 +1,15 @@
 package com.montaury.mus.jeu.joueur;
 
 import com.montaury.mus.jeu.carte.Carte;
-import com.montaury.mus.jeu.tour.phases.dialogue.Choix;
-import com.montaury.mus.jeu.tour.phases.dialogue.Gehiago;
-import com.montaury.mus.jeu.tour.phases.dialogue.Hordago;
-import com.montaury.mus.jeu.tour.phases.dialogue.Idoki;
-import com.montaury.mus.jeu.tour.phases.dialogue.Imido;
-import com.montaury.mus.jeu.tour.phases.dialogue.Kanta;
-import com.montaury.mus.jeu.tour.phases.dialogue.Paso;
-import com.montaury.mus.jeu.tour.phases.dialogue.Tira;
-import com.montaury.mus.jeu.tour.phases.dialogue.TypeChoix;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Gehiago;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Idoki;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Imido;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Kanta;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Paso;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Tira;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

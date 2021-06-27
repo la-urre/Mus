@@ -1,5 +1,6 @@
-package com.montaury.mus.jeu.tour.phases.dialogue;
+package com.montaury.mus.jeu.tour.phases.dialogue.choix;
 
+import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
 import java.util.List;
 
 public abstract class Choix {
@@ -31,8 +32,5 @@ public abstract class Choix {
     return type.choixSuivantsPossibles();
   }
 
-  public final boolean metFinAuDialogue() {
-    return type.choixSuivantsPossibles().isEmpty();
-  }
-
+  public abstract Dialogue.Deroulement influerSur(Dialogue.Deroulement deroulement);
 }

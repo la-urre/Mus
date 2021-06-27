@@ -5,7 +5,7 @@ import com.montaury.mus.jeu.carte.Defausse;
 import com.montaury.mus.jeu.joueur.AffichageConsoleEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.InterfaceJoueur;
 import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.Opposants;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

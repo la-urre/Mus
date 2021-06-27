@@ -1,95 +1,68 @@
 package com.montaury.mus.jeu.tour.phases.dialogue;
 
+import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
+import com.montaury.mus.jeu.tour.phases.Participants;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Idoki;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Imido;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Kanta;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Paso;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Tira;
+import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.montaury.mus.jeu.joueur.Fixtures.unJoueur;
+import static com.montaury.mus.jeu.joueur.Fixtures.unJoueurFaisantChoix;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 class DialogueTest {
 
-  private final Joueur joueur1 = unJoueur();
-  private final Joueur joueur2 = unJoueur();
-
-  @Test
-  void n_est_pas_termine_si_personne_n_a_parle() {
-    Dialogue dialogue = new Dialogue();
-
-    assertThat(dialogue.enCours()).isTrue();
+  @BeforeEach
+  void setUp() {
+    dialogue = new Dialogue(mock(AffichageEvenementsDeJeu.class));
   }
 
   @Test
-  void n_est_pas_termine_si_tout_le_monde_n_a_pas_parle() {
-    Dialogue dialogue = new Dialogue();
-    dialogue.ajouter(new Paso(), joueur1);
+  void engage_un_point_si_les_2_participants_sont_paso() {
+    Joueur joueur1 = unJoueurFaisantChoix(new Paso());
+    Joueur joueur2 = unJoueurFaisantChoix(new Paso());
 
-    assertThat(dialogue.enCours()).isTrue();
-  }
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
 
-  @Test
-  void n_est_pas_termine_si_le_dernier_choix_est_imido() {
-    Dialogue dialogue = new Dialogue();
-    dialogue.ajouter(new Paso(), joueur1);
-    dialogue.ajouter(new Imido(), joueur2);
-
-    assertThat(dialogue.enCours()).isTrue();
-  }
-
-  @Test
-  void n_est_pas_termine_si_le_dernier_choix_est_hordago() {
-    Dialogue dialogue = new Dialogue();
-    dialogue.ajouter(new Paso(), joueur1);
-    dialogue.ajouter(new Hordago(), joueur2);
-
-    assertThat(dialogue.enCours()).isTrue();
-  }
-
-  @Test
-  void n_est_pas_termine_si_le_dernier_choix_est_gehiago() {
-    Dialogue dialogue = new Dialogue();
-    dialogue.ajouter(new Paso(), joueur1);
-    dialogue.ajouter(new Gehiago(2), joueur2);
-
-    assertThat(dialogue.enCours()).isTrue();
-  }
-
-  @Test
-  void est_termine_si_tout_le_monde_est_paso() {
-    Dialogue dialogue = new Dialogue();
-    dialogue.ajouter(new Paso(), joueur1);
-    dialogue.ajouter(new Paso(), joueur2);
-
-    assertThat(dialogue.enCours()).isFalse();
+    assertThat(recapitulatif.pointsEngages()).isOne();
   }
 
   @Test
   void est_termine_si_le_dernier_choix_est_tira() {
-    Dialogue dialogue = new Dialogue();
-    dialogue.ajouter(new Paso(), joueur1);
-    dialogue.ajouter(new Imido(), joueur2);
-    dialogue.ajouter(new Tira(), joueur1);
+    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Tira());
+    Joueur joueur2 = unJoueurFaisantChoix(new Imido());
 
-    assertThat(dialogue.enCours()).isFalse();
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+
+    assertThat(recapitulatif.pointsEngages()).isOne();
   }
 
   @Test
   void est_termine_si_le_dernier_choix_est_idoki() {
-    Dialogue dialogue = new Dialogue();
-    dialogue.ajouter(new Paso(), joueur1);
-    dialogue.ajouter(new Imido(), joueur2);
-    dialogue.ajouter(new Idoki(), joueur1);
+    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Idoki());
+    Joueur joueur2 = unJoueurFaisantChoix(new Imido());
 
-    assertThat(dialogue.enCours()).isFalse();
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+
+    assertThat(recapitulatif.pointsEngages()).isEqualTo(2);
   }
 
   @Test
   void est_termine_si_le_dernier_choix_est_kanta() {
-    Dialogue dialogue = new Dialogue();
-    dialogue.ajouter(new Paso(), joueur1);
-    dialogue.ajouter(new Hordago(), joueur2);
-    dialogue.ajouter(new Kanta(), joueur1);
+    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Kanta());
+    Joueur joueur2 = unJoueurFaisantChoix(new Hordago());
 
-    assertThat(dialogue.enCours()).isFalse();
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+
+    assertThat(recapitulatif.pointsEngages()).isEqualTo(40);
   }
+  private Dialogue dialogue;
 
 }

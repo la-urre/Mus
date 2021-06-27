@@ -2,7 +2,6 @@ package com.montaury.mus.jeu;
 
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
 import com.montaury.mus.jeu.tour.Tour;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +26,7 @@ public class Manche {
   }
 
   public static class Score {
-    private static final int POINTS_POUR_TERMINER_MANCHE = 40;
+    public static final int POINTS_POUR_TERMINER_MANCHE = 40;
 
     private final Map<Joueur, Integer> scoreParJoueur = new HashMap<>();
 

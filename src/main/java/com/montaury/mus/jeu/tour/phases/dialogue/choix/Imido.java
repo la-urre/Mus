@@ -1,6 +1,6 @@
-package com.montaury.mus.jeu.tour.phases.dialogue;
+package com.montaury.mus.jeu.tour.phases.dialogue.choix;
 
-public class Imido extends Choix {
+public class Imido extends Mise {
   public Imido() {
     this(2);
   }
