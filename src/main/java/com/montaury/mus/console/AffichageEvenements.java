@@ -9,7 +9,7 @@ import com.montaury.mus.jeu.tour.phases.Phase;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
 import java.util.stream.Collectors;
 
-public class AffichageEvenements implements Evenements {
+public class  AffichageEvenements implements Evenements {
   private final Joueur joueurCourant;
 
   public AffichageEvenements(Joueur courant) {
