@@ -6,7 +6,7 @@ import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.Opposants;
 import java.util.Scanner;
 
-//Class du jeu
+//Class du jeu Mus
 public class JeuDeMus {
   public static void main(String[] args) {
     System.out.print("Entrez votre nom: ");
