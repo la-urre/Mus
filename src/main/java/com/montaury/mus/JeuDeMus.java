@@ -18,3 +18,4 @@ public class JeuDeMus {
     System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
   }
 }
+//test
